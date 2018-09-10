@@ -1,4 +1,5 @@
 require 'pg'
+require 'space'
 
 describe '.all' do
   it 'returns a list of spaces' do
