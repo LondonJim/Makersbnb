@@ -4,7 +4,7 @@ require './app'
 require 'capybara/rspec'
 require 'simplecov'
 require 'simplecov-console'
-# require 'test_database_setup'
+require 'test_database_setup'
 
 Capybara.app = MakersBnB
 
@@ -33,7 +33,11 @@ SimpleCov.start
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-  # test_database_setup
+
+  config.before(:each) do
+    test_database_setup
+  end
+  
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
     # and `failure_message` of custom matchers include text for helper methods
