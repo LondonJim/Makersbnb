@@ -6,7 +6,7 @@ Capybara.app = MakersBnB
 
 feature 'View spaces' do
   scenario 'user can see all spaces' do
-    connection = PG.connect(dbname: 'makers_bnb_test')
+    connection = PG.connect(dbname: 'makersbnb_test')
     add_three_spaces
     visit('/spaces')
     expect(page).to have_content "spacename1"

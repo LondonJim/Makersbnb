@@ -6,6 +6,7 @@ gem 'pg'
 gem 'rake'
 gem 'sinatra'
 gem 'activerecord'
+gem 'pg'
 
 group :test do
   gem 'capybara'
