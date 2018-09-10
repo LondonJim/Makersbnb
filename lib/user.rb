@@ -16,13 +16,13 @@ class User
     result = env_check.exec("
       INSERT INTO users (name, handle, email, password)
       VALUES('#{name}', '#{handle}', '#{email}', '#{encrypted_pword}')
-      RETURNING id, name, handle, email, password
+      RETURNING id, name, handle, email, password;
       ")
     user_create(result)
   end
 
   def self.all
-    users = env_check.exec("SELECT * FROM users")
+    users = env_check.exec("SELECT * FROM users;")
     users.map do |user|
       User.new(
         id: user['id'],
@@ -32,6 +32,11 @@ class User
         password: user['password']
       )
     end
+  end
+
+  def self.password_check(handle, password)
+    result = env_check.exec("SELECT * FROM users WHERE HANDLE = '#{handle}';")
+    BCrypt::Password.new(user_create(result).password) == password
   end
 
   private
@@ -55,3 +60,4 @@ class User
     user
   end
 end
+
