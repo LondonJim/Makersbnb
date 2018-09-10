@@ -1,0 +1,15 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: makersbnb_test
+  pool: 2
+  username: your_username
+  password: your_password
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: makersbnb
+  pool: 2
+  username: your_username
+  password: your_password

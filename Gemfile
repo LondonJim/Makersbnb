@@ -2,9 +2,12 @@ source 'https://rubygems.org'
 
 ruby '2.5.1'
 
+gem 'pg'
 gem 'rake'
 gem 'sinatra'
 gem 'activerecord'
+gem 'activerecord'
+gem 'sinatra-activerecord'
 
 group :test do
   gem 'capybara'
