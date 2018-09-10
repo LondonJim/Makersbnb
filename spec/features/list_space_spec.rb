@@ -21,9 +21,9 @@ feature 'View spaces' do
   scenario 'user can see details of all spaces' do
     add_three_spaces
     visit('/spaces')
-    expect(page).to have_content "price: "
-    expect(page).to have_content "location: "
-    expect(page).to have_content "rentername: "
+    expect(page).to have_content "Price: "
+    expect(page).to have_content "Location: "
+    expect(page).to have_content "Owner name: "
   end
 
   # As a user,
