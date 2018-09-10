@@ -7,13 +7,13 @@ MakersBnB specification
 We would like a web application that allows users to list spaces they have available, and to hire spaces for the night.
 
 ### Headline specifications
-- Any signed-up user can list a new space. 
+- Any signed-up user can list a new space.
     - it is done when: a user can sign up for an account
     - it is done when: a signed up user can send a request to another user to hire a space
     - it is done when: a user can send a request to another user
     - it is done when: a user can accept or decline a request from another user
 - Users can list multiple spaces.
-- Users should be able to name their space, provide a short description of the space, and a price per night. 
+- Users should be able to name their space, provide a short description of the space, and a price per night.
 - Users should be able to offer a range of dates where their space is available.
 - Any signed-up user can request to hire any space for one night, and this should be approved by the user that owns that space.
 - Nights for which a space has already been booked should not be available for users to book that space.
@@ -24,31 +24,31 @@ As a user,
 So I can list my room to rent as myself,
 I want to be able to sign up for an account
 
-As a user, 
-So I can list my room to rent as myself, 
+As a user,
+So I can list my room to rent as myself,
 I want to be able to log in as me.
 
 As a user,
-So no one makes a booking as me, 
+So no one makes a booking as me,
 I want to be able to log out.
 
 As a user,
 So I can advertise my space,
 I want to be able to list my space.
 
-As a user, 
-So I can list all my spaces, 
+As a user,
+So I can list all my spaces,
 I want to be able to list multiple spaces/rooms at once.
 
-As a user, 
+As a user,
 So I can let people know the details of my space,
 I want to be able to enter details of my space: name, description, price.
 
-As a user, 
+As a user,
 So I can let people know when the space is available,
 I want to be able to list a range of dates of availability.
 
-As a user, 
+As a user,
 So I can see what spaces are available,
 I want to be able to see a list of all spaces
 
@@ -68,8 +68,8 @@ As a user,
 So I can respond to requests,
 I want to be able to approve or deny requests.
 
-As a user, 
-So I avoid double booking, 
+As a user,
+So I avoid double booking,
 I want to remove spaces from availability once the booking has been confirmed.
 
 #### Nice-to-haves
@@ -95,11 +95,10 @@ I want to remove spaces from availability once the booking has been confirmed.
 
 <ENTER USER STORIES FOR NICE-TO-HAVES>
 
-## MVP 
+## MVP
 - Users should be able to list a property
-- Users should be able to name their space, provide a short description of the space, and a price per night. 
+- Users should be able to name their space, provide a short description of the space, and a price per night.
 - Users should be able to offer a range of dates where their space is available.
-
 
 ### User Stories: MVP
 
@@ -107,10 +106,10 @@ As a user,
 So I can advertise my space,
 I want to be able to list my space.
 
-As a user, 
+As a user,
 So I can let people know the details of my space,
 I want to be able to enter details of my space: name, description, price.
 
-As a user, 
+As a user,
 So I can let people know when the space is available,
 I want to be able to list a range of dates of availability.

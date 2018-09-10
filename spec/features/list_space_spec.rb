@@ -6,7 +6,8 @@ Capybara.app = MakersBnB
 
 feature 'View spaces' do
   scenario 'user can see all spaces' do
-    # add spaces to list
+    connection = PG.connect(dbname: 'makers_bnb_test')
+    add_three_spaces
     visit('/spaces')
     expect(page).to have_content "spacename1"
     expect(page).to have_content "spacename2"
@@ -18,7 +19,7 @@ feature 'View spaces' do
   # I want to be able to enter details of my space: name, description, price.
 
   scenario 'user can see details of all spaces' do
-    # add spaces to list
+    add_three_spaces
     visit('/spaces')
     expect(page).to have_content "price: "
     expect(page).to have_content "location: "
@@ -30,9 +31,9 @@ feature 'View spaces' do
   # I want to be able to list a range of dates of availability.
 
   scenario 'user can availability of spaces' do
-    # add spaces to list
+    add_three_spaces
     visit('/spaces')
-    expect(page).to have_content "space availablility: 10/09/2018 11/09/2018"
+    expect(page).to have_content "10/09/2018, 11/09/2018"
   end
 
 end
