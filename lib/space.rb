@@ -14,21 +14,21 @@ class Space
     @name = name
     @owner_id = owner_id
     @information = information
-    @location = loaction
+    @location = location
     @price = price
   end
 
   def self.all
-    connection = env_check
+    connection = self.env_check
     spaces = connection.exec("SELECT * FROM spaces")
     spaces.map do |space|
       Space.new(
-        id: space['id'],
+        id: space['id'].to_i,
         name: space['name'],
-        owner_id: space['owner_id'],
+        owner_id: space['owner_id'].to_i,
         information: space['information'],
-        location: space['loaction'],
-        price: space['price']
+        location: space['location'],
+        price: space['price'].to_i
       )
     end
   end
@@ -43,4 +43,6 @@ class Space
     end
   end
 end
+
+
 
