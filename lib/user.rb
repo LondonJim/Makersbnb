@@ -12,6 +12,7 @@ class User
   end
 
   def self.sign_up(name:, handle:, email:, password:)
+    return nil if handle_check(handle) || email_check(email)
     encrypted_pword = BCrypt::Password.create(password)
     result = env_check.exec("
       INSERT INTO users (name, handle, email, password)
@@ -59,5 +60,12 @@ class User
     )
     user
   end
-end
 
+  def self.handle_check(handle)
+    !env_check.exec("SELECT * FROM users WHERE HANDLE = '#{handle}'").map { |handle| handle }.empty?
+  end
+
+  def self.email_check(email)
+    !env_check.exec("SELECT * FROM users WHERE EMAIL = '#{email}'").map { |email| email }.empty?
+  end
+end
