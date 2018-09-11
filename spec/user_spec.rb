@@ -3,7 +3,7 @@ require 'user'
 describe User do
   describe '.sign_up' do
     it 'allows a user to sign up' do
-      sign_up_user
+      User.create(name: 'XX', handle: 'XX', email: 'XX', password: 'XX')
       expect(User.all.first.name).to eq('XX')
       expect(User.all.first.handle).to eq('XX')
       expect(User.all.first.email).to eq('XX')

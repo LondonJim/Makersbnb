@@ -3,7 +3,7 @@ Capybara.app = MakersBnB
   # As a user,
   # So I can let people know when the space is available,
   # I want to be able to list a range of dates of availability.
-
+feature 'to be changed' do
   scenario 'user can availability of spaces' do
     add_three_spaces
     add_availability_for_three_spaces

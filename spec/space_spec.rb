@@ -1,6 +1,4 @@
 require 'space'
-<<<<<<< HEAD
-=======
 
 describe '.all' do
   it 'returns a list of spaces' do
@@ -34,4 +32,4 @@ describe '#show_availability' do
 end
 
 # add_availability(space_id, date) method
->>>>>>> 1b3aca6f276b0e3e605963438ee09aa4b1481599
+
