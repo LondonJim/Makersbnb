@@ -2,7 +2,7 @@
 
 MakerBnB is a web application that allows users to both list their spaces for hire, and hire spaces from other users.
 
-Tags: Ruby, Selenium, Rspec, Capybara, Javascript, Jasmine, PostgreSQL
+Tags: Ruby, Selenium, Rspec, Capybara, Javascript, Jasmine, ActiveRecord, Sqlite3
 
 ### Domain Model
 
