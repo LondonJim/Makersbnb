@@ -9,9 +9,9 @@ feature 'View spaces' do
     connection = PG.connect(dbname: 'makersbnb_test')
     add_three_spaces
     visit('/spaces')
-    expect(page).to have_content "spacename1"
-    expect(page).to have_content "spacename2"
-    expect(page).to have_content "spacename3"
+    expect(page).to have_content "Property: spacename1"
+    expect(page).to have_content "Property: spacename2"
+    expect(page).to have_content "Property: spacename3"
   end
 
   # As a user,
@@ -21,9 +21,9 @@ feature 'View spaces' do
   scenario 'user can see details of all spaces' do
     add_three_spaces
     visit('/spaces')
-    expect(page).to have_content "Price: "
-    expect(page).to have_content "Location: "
-    expect(page).to have_content "Owner name: "
+    expect(page).to have_content "Price: 100"
+    expect(page).to have_content "Information: Great house"
+    expect(page).to have_content "Location: 123 Fake Street"
   end
 
   # As a user,
