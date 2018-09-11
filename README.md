@@ -1,10 +1,12 @@
-# Makersbnb
-Makers Week 6 Group Project
+# MakersBnB
 
-<INSERT DESCRIPTION OF PROJECT>
+MakerBnB is a web application that allows users to both list their spaces for hire, and hire spaces from other users.
 
-MakersBnB specification
-We would like a web application that allows users to list spaces they have available, and to hire spaces for the night.
+Tags: Ruby, Selenium, Rspec, Capybara, Javascript, Jasmine, PostgreSQL
+
+### Domain Model
+
+![Imgur](https://i.imgur.com/WWyeSFv.png)
 
 ### Headline specifications
 - Any signed-up user can list a new space.
@@ -20,6 +22,7 @@ We would like a web application that allows users to list spaces they have avail
 - Until a user has confirmed a booking request, that space can still be booked for that night.
 
 ##### User stories: Headline specifications
+```
 As a user,
 So I can list my room to rent as myself,
 I want to be able to sign up for an account
@@ -71,6 +74,7 @@ I want to be able to approve or deny requests.
 As a user,
 So I avoid double booking,
 I want to remove spaces from availability once the booking has been confirmed.
+```
 
 #### Nice-to-haves
 - Users should receive an email whenever one of the following happens:
@@ -95,13 +99,14 @@ I want to remove spaces from availability once the booking has been confirmed.
 
 <ENTER USER STORIES FOR NICE-TO-HAVES>
 
-## MVP
+## MVP Specifications
+
 - Users should be able to list a property
 - Users should be able to name their space, provide a short description of the space, and a price per night.
 - Users should be able to offer a range of dates where their space is available.
 
-### User Stories: MVP
-
+### MVP User Stories
+```
 As a user,
 So I can advertise my space,
 I want to be able to list my space.
@@ -113,3 +118,4 @@ I want to be able to enter details of my space: name, description, price.
 As a user,
 So I can let people know when the space is available,
 I want to be able to list a range of dates of availability.
+```
