@@ -1,12 +1,10 @@
-ENV['RACK_ENV'] = 'test'
+
 ENV['ENVIRONMENT'] = 'test'
 
 require './app'
 require 'capybara/rspec'
 require 'simplecov'
 require 'simplecov-console'
-require 'test_database_setup'
-require 'web_helpers.rb'
 
 Capybara.app = MakersBnB
 
@@ -32,10 +30,21 @@ SimpleCov.start
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
 
-  config.before(:each) do
-    test_database_setup
+  config.before(:suite) do
+    ActiveRecord::Base.logger = nil
+    ["users", "spaces", "messages", "bookings", "availabilities"].each do |table|
+      ActiveRecord::Base.connection.execute(File.read("./db/setup/#{table}.sql"))
+    end
   end
-  
+
+  config.before(:each) do
+    User.delete_all
+    Space.delete_all
+    Message.delete_all
+    Booking.delete_all
+    Availability.delete_all
+  end
+
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
     # and `failure_message` of custom matchers include text for helper methods
