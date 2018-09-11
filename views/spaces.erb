@@ -9,7 +9,7 @@
 
 <% @spaces.each do |space| %>
     <ul>
-      <li>Property: <%= space.name %></li>
+      <li>Property: <a href='/space/<%=space.id%>'> <%= space.name %></a></li>
       <li>Information: <%= space.information %></li>
       <li>Location: <%= space.location %></li>
       <li>Price: <%= space.price %></li>

@@ -13,6 +13,11 @@ class MakersBnB < Sinatra::Base
     erb :spaces
   end
 
+  get '/space/:id' do
+    @id = params[:id]
+    erb :space
+  end
+
   run! if app_file == $0
 
 end
