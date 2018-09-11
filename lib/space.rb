@@ -1,11 +1,13 @@
 require 'pg'
 
 class Space
+
   attr_reader :id, :name, :owner_id, :information, :location, :price
+
   def initialize(
                 id:,
-                name:, 
-                owner_id:, 
+                name:,
+                owner_id:,
                 information:,
                 location:,
                 price:
@@ -14,21 +16,21 @@ class Space
     @name = name
     @owner_id = owner_id
     @information = information
-    @location = location
+    @location = loaction
     @price = price
   end
 
   def self.all
-    connection = self.env_check
+    connection = env_check
     spaces = connection.exec("SELECT * FROM spaces")
     spaces.map do |space|
       Space.new(
-        id: space['id'].to_i,
+        id: space['id'],
         name: space['name'],
-        owner_id: space['owner_id'].to_i,
+        owner_id: space['owner_id'],
         information: space['information'],
-        location: space['location'],
-        price: space['price'].to_i
+        location: space['loaction'],
+        price: space['price']
       )
     end
   end
@@ -43,6 +45,3 @@ class Space
     end
   end
 end
-
-
-
