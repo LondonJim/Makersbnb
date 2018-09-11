@@ -3,14 +3,50 @@
 </head>
 
 <body style="text-align: center">
-  Available dates for
-  <%= @space.name %>
-    <br>
-    <br>
+  <div class="jumbotron text-center" style="margin-bottom:0">
+    <h1>MakersBnB</h1>
+  </div>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li>
+          <a class="nav-link" href="/spaces">View</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/add_form">Add</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/signup">Signup</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <h1>
+    Available dates for
+    <%= @space.name %>
+  </h1>
+  <br>
+  <br>
 
-    <% @available_dates.each do |a| %>
-      <%= a %>
+  <% @available_dates.each do |a| %>
+    <%= a %>
+      <br>
+      <br>
+      <% end %>
+
         <br>
         <br>
-        <% end %>
+        <form action="/spaces" method="get">
+          <input type="submit" value="Back">
+        </form>
+        <form action="/" method="get">
+          <input type="submit" value="Home">
+        </form>
 </body>
