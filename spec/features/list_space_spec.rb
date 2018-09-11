@@ -25,15 +25,4 @@ feature 'View spaces' do
     expect(page).to have_content "Location: "
     expect(page).to have_content "Owner name: "
   end
-
-  # As a user,
-  # So I can let people know when the space is available,
-  # I want to be able to list a range of dates of availability.
-
-  scenario 'user can availability of spaces' do
-    add_three_spaces
-    visit('/spaces')
-    expect(page).to have_content "10/09/2018, 11/09/2018"
-  end
-
 end
