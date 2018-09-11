@@ -4,6 +4,10 @@ MakerBnB is a web application that allows users to both list their spaces for hi
 
 Tags: Ruby, Selenium, Rspec, Capybara, Javascript, Jasmine, PostgreSQL
 
+### Domain Model
+
+![Imgur](https://i.imgur.com/WWyeSFv.png)
+
 ### Headline specifications
 - Any signed-up user can list a new space.
     - it is done when: a user can sign up for an account
