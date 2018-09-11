@@ -33,17 +33,19 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/spaces/create' do
-    @owner_id = params[:owner_id]
+    @user_id = params[:user_id]
     @name = params[:name]
     @info = params[:information]
     @location = params[:location]
     @price = params[:price]
-    Space.create(owner_id: @owner_id, name: @name, information: @location, price: @price)
+    Space.create(owner_id: @user_id, name: @name, information: @location, price: @price)
     redirect '/spaces'
   end
 
   get '/space/:id' do
     @id = params[:id]
+    @space = Space.find_or_initialize_by(id: @id)
+    @available_dates = @space.availabilities.map { |a| a.date }
     erb :space
   end
 

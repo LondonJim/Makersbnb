@@ -1,5 +1,10 @@
-This space works for ID:
-<%=@id%>
+Available dates for
+<%= @space.name %>
+  <br>
+  <br>
 
-  Dates available:
-  <%= space.show_availability(@id) %>
+  <% @available_dates.each do |a| %>
+    <%= a %>
+      <br>
+      <br>
+      <% end %>

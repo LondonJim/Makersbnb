@@ -1,17 +1,20 @@
 <h1> Welcome to MakersBnB </h1>
 
-<!-- @id = id
-@name = name
-@owner_id = owner_id
-@information = information
-@location = location
-@price = price -->
-
 <% @spaces.each do |space| %>
-    <ul>
-      <li>Property: <a href='/space/<%=space.id%>'> <%= space.name %></a></li>
-      <li>Information: <%= space.information %></li>
-      <li>Location: <%= space.location %></li>
-      <li>Price: <%= space.price %></li>
-    </ul>
+  <ul>
+    <li>Property:
+      <a href='/space/<%=space.id%>'>
+        <%= space.name %>
+      </a>
+    </li>
+    <li>Information:
+      <%= space.information %>
+    </li>
+    <li>Location:
+      <%= space.location %>
+    </li>
+    <li>Price:
+      <%= space.price %>
+    </li>
+  </ul>
   <% end %>
