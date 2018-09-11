@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS bookings (
-  id SERIAL PRIMARY KEY,
+  id INTEGER PRIMARY KEY,
   space_id INT,
   date INT,
   renter_id INT

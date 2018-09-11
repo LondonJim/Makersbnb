@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS spaces (
-  id SERIAL PRIMARY KEY,
+  id INTEGER PRIMARY KEY,
   name VARCHAR(60),
   owner_id INT,
   information VARCHAR(140),
