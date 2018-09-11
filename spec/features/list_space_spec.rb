@@ -5,6 +5,13 @@ Capybara.app = MakersBnB
   # I want to be able to list my space.
 
 feature 'View spaces' do
+
+  scenario 'homepage, user can see spaces' do
+    visit('/')
+    click_link 'Click here to see spaces'
+    expect(page).to have_content "Property: spacename1"
+
+  end
   scenario 'user can see all spaces' do
     visit('/spaces')
     expect(page).to have_content "Property: spacename1"

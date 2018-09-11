@@ -23,9 +23,23 @@ class MakersBnB < Sinatra::Base
     erb :index
   end
 
+  get '/add_form' do
+    erb :add_form
+  end
+
   get '/spaces' do
     @spaces = Space.all
     erb :spaces
+  end
+
+  post '/spaces/create' do
+    @owner_id = params[:owner_id]
+    @name = params[:name]
+    @info = params[:information]
+    @location = params[:location]
+    @price = params[:price]
+    Space.create(owner_id: @owner_id, name: @name, information: @location, price: @price)
+    redirect '/spaces'
   end
 
   get '/space/:id' do
