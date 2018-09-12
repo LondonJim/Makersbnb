@@ -33,12 +33,13 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/spaces/create' do
-    @user_id = params[:user_id]
-    @name = params[:name]
-    @info = params[:information]
-    @location = params[:location]
-    @price = params[:price]
-    Space.create(owner_id: @user_id, name: @name, information: @location, price: @price)
+    Space.create(
+      user_id: params[:user_id], 
+      name: params[:name], 
+      info: params[:info], 
+      location: params[:location], 
+      price: params[:price]
+      )
     redirect '/spaces'
   end
 
@@ -50,6 +51,4 @@ class MakersBnB < Sinatra::Base
   end
 
   run! if app_file == $0
-
-
 end
