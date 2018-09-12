@@ -72,7 +72,14 @@ class MakersBnB < Sinatra::Base
       location: params[:location],
       price: params[:price]
       )
-    redirect '/spaces'
+    Availability.create(
+      space_id: Space.last.id,
+      date: params[:date]
+      )
+
+      flash[:notice] = "Space successfully added"
+
+    redirect '/'
   end
 
   get '/space/:id' do

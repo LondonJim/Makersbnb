@@ -11,6 +11,7 @@ gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'sinatra-flash'
 gem 'pg'
+gem 'sinatra-flash'
 
 group :test do
   gem 'capybara'
