@@ -11,8 +11,6 @@ class User < ActiveRecord::Base
   def self.login(handle:, password:)
     validates :handle, presence: true
     validates :password, presence: true
-    # return false unless User.find_by(handle: handle)
-    # user = User.find_by(handle: handle)
-    # (user.password == password)
+    User.find_by(handle: handle).password == password
   end
 end
