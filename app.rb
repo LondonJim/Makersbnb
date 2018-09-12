@@ -3,9 +3,9 @@ require 'fileutils'
 require 'sinatra'
 require 'sinatra/base'
 require 'sinatra/activerecord'
-require 'pg'
 require 'sinatra/flash'
-
+require 'pg'
+require 'bcrypt'
 
 if ENV['ENVIRONMENT'] == 'test'
   uri = URI.parse(ENV["URL_TEST"])
@@ -14,7 +14,6 @@ else
   uri = URI.parse(ENV["URL"])
   ActiveRecord::Base.establish_connection(adapter: 'postgresql', host: uri.host, username: uri.user, password: uri.password, database: uri.path.sub('/', ''))
 end
-
 
 require './lib/space'
 require './lib/user'
@@ -30,6 +29,30 @@ class MakersBnB < Sinatra::Base
 
   get '/' do
     erb :index
+  end
+
+  get '/signup' do
+    # flash[:error] = session[:user].errors.full_messages.to_sentence if (session[:user])
+    erb :signup
+  end
+
+  post '/signup' do
+    session[:user] = User.create(
+      name: params[:name],
+      handle: params[:handle],
+      email: params[:email],
+      password: params[:password]
+    )
+    redirect '/signup'
+  end
+
+  get '/login' do
+    erb :login
+  end
+
+  post '/login' do
+    session[:user] = User.find_by(handle: params[:handle]) if User.login(handle: params[:handle], password: params[:password])
+    redirect '/login'
   end
 
   get '/add_form' do
