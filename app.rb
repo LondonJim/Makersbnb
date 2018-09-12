@@ -46,6 +46,15 @@ class MakersBnB < Sinatra::Base
     redirect '/signup'
   end
 
+  get '/login' do
+    erb :login
+  end
+
+  post '/login' do
+    session[:user] = User.find_by(handle: params[:handle]) if User.login(handle: params[:handle], password: params[:password])
+    redirect '/login'
+  end
+
   get '/add_form' do
     erb :add_form
   end
