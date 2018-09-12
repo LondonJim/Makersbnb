@@ -9,8 +9,10 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
 
   def self.login(handle:, password:)
-    return false unless User.find_by(handle: handle)
-    user = User.find_by(handle: handle)
-    (user.password == password)
+    validates :handle, presence: true
+    validates :password, presence: true
+    # return false unless User.find_by(handle: handle)
+    # user = User.find_by(handle: handle)
+    # (user.password == password)
   end
 end

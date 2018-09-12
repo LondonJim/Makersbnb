@@ -32,7 +32,6 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/signup' do
-    # flash[:error] = session[:user].errors.full_messages.to_sentence if (session[:user])
     erb :signup
   end
 
@@ -43,6 +42,7 @@ class MakersBnB < Sinatra::Base
       email: params[:email],
       password: params[:password]
     )
+    flash[:error] = session[:user].errors.full_messages.to_sentence unless session[:user] == nil
     redirect '/signup'
   end
 
@@ -51,7 +51,8 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/login' do
-    session[:user] = User.find_by(handle: params[:handle]) if User.login(handle: params[:handle], password: params[:password])
+    session[:current_user] = User.find_by(handle: params[:handle]) if User.login(handle: params[:handle], password: params[:password])
+    flash[:error] = 'No details held' if session[:current_user] == nil
     redirect '/login'
   end
 

@@ -33,10 +33,17 @@
   <form action="/login" method="post">
     <input type="text" name="handle" required>
     <input type="text" name="password" required>
-    <br><br>
+    <br>
+    <br>
     <input type="submit" value="Submit">
   </form>
 
-  <h1><%= session[:user].name unless session[:user] == nil %></h1>
-
+  <center>
+    <h1>
+      <%= "Hello, #{session[:current_user].name}" unless session[:current_user] == nil %>
+    </h1>
+    <h1>
+      <%= flash[:error] %>
+    </h1>
+  </center>
 </body>
