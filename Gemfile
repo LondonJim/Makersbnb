@@ -10,7 +10,7 @@ gem 'sinatra'
 gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'pg'
-gem "simple_calendar"
+gem 'sinatra-flash'
 
 group :test do
   gem 'capybara'

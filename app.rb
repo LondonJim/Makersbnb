@@ -4,7 +4,7 @@ require 'sinatra'
 require 'sinatra/base'
 require 'sinatra/activerecord'
 require 'pg'
-require 'simple_calendar'
+require 'sinatra/flash'
 
 
 if ENV['ENVIRONMENT'] == 'test'
@@ -24,6 +24,9 @@ require './lib/availability'
 
 class MakersBnB < Sinatra::Base
   register Sinatra::ActiveRecordExtension
+  register Sinatra::Flash
+
+  enable :sessions
 
   get '/' do
     erb :index
@@ -46,11 +49,14 @@ class MakersBnB < Sinatra::Base
       location: params[:location],
       price: params[:price]
       )
-      Availability.create(
-        space_id: Space.last.id,
-        date: params[:date]
+    Availability.create(
+      space_id: Space.last.id,
+      date: params[:date]
       )
-    redirect '/spaces'
+
+      flash[:notice] = "Space successfully added"
+
+    redirect '/'
   end
 
   get '/space/:id' do
