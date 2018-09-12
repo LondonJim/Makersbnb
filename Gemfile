@@ -9,6 +9,7 @@ gem 'fileutils'
 gem 'sinatra'
 gem 'activerecord'
 gem 'sinatra-activerecord'
+gem 'sinatra-flash'
 gem 'pg'
 
 group :test do

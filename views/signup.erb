@@ -30,18 +30,16 @@
     </div>
   </nav>
 
-  <form action="/spaces/create" method="post">
-    <input type="text" name="user_id" required> User id
+  <form action="/signup" method="post">
+    <input type="text" name="name" required> Name
     <br>
-    <input type="text" name="name" required> Space Name
+    <input type="text" name="handle" required> Username
     <br>
-    <input type="text" name="info" required> Info
+    <input type="text" name="email" required> Email
     <br>
-    <input type="text" name="location" required> Location
-    <br>
-    <input type="text" name="price" required> Price
+    <input type="text" name="password" required> Password
     <br>
     <br>
-    <input type="submit" value="Add space">
+    <input type="submit" value="Submit">
   </form>
 </body>
