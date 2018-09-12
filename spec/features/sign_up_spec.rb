@@ -7,6 +7,7 @@ feature "sign up" do
     fill_in :email, with: "someemail@email.com"
     fill_in :password, with: "password1"
     click_button "Submit"
+
     expect(page).to have_content("Welcome Samir, signup successful")
   end
 
@@ -28,7 +29,7 @@ feature "sign up" do
 
     expect(page).to have_content("Unable to make account, username already in use")
   end
-  
+
   scenario "can't sign up with existing username" do
     visit "/"
     click_link "Signup"

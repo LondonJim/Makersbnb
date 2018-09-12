@@ -25,19 +25,19 @@ class MakersBnB < Sinatra::Base
   register Sinatra::ActiveRecordExtension
   register Sinatra::Flash
 
+  enable :sessions
+
   get '/' do
     erb :index
   end
 
   get '/signup' do
+    # flash[:error] = session[:user].errors.full_messages.to_sentence if (session[:user])
     erb :signup
   end
 
   post '/signup' do
-    flash[:usedname] = "Unable to make account, username already in use" if (User.find_by(handle: params[:handle]))
-    flash[:usedemail] = "Unable to make account, email already in use" if (User.find_by(email: params[:email]))
-
-    User.signup(
+    session[:user] = User.create(
       name: params[:name],
       handle: params[:handle],
       email: params[:email],
