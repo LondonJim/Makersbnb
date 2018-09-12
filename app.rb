@@ -32,7 +32,6 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/signup' do
-    # flash[:error] = session[:user].errors.full_messages.to_sentence if (session[:user])
     erb :signup
   end
 
@@ -43,6 +42,7 @@ class MakersBnB < Sinatra::Base
       email: params[:email],
       password: params[:password]
     )
+    flash[:error] = session[:user].errors.full_messages.to_sentence unless session[:user] == nil
     redirect '/signup'
   end
 
