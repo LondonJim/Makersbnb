@@ -5,6 +5,7 @@ require 'sinatra/base'
 require 'sinatra/activerecord'
 require 'sinatra/flash'
 require 'pg'
+require 'bcrypt'
 
 if ENV['ENVIRONMENT'] == 'test'
   uri = URI.parse(ENV["URL_TEST"])
@@ -29,17 +30,19 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/signup' do
-    flash[:notice]
     erb :signup
   end
 
   post '/signup' do
-    # User.signup(
-    #   name: params[:name]
-    #   handle: params[:handle]
-    #   email: params[:email]
-    #   password: params[:password]
-    # )
+    flash[:usedname] = "Unable to make account, username already in use" if (User.find_by(handle: params[:handle]))
+    flash[:usedemail] = "Unable to make account, email already in use" if (User.find_by(email: params[:email]))
+
+    User.signup(
+      name: params[:name],
+      handle: params[:handle],
+      email: params[:email],
+      password: params[:password]
+    )
     redirect '/signup'
   end
 
