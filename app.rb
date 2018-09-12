@@ -63,12 +63,12 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/spaces/update' do
-    space = Space.find_by(name: params[:name])
+    space = Space.find_by(name: params[:name_2])
     space_user_id = space.user_id
-    if params[:user_id] == space_user_id.to_s
+    if params[:user_id_2] == space_user_id.to_s
       Availability.create(
         space_id: space.id,
-        date: params[:date]
+        date: params[:date_2]
         )
         flash[:notice] = "Date successfully added to Space"
     end
