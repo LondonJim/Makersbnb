@@ -3,12 +3,13 @@ source 'https://rubygems.org'
 ruby '2.5.1'
 
 gem 'bcrypt'
+gem 'dotenv'
 gem 'rake'
 gem 'fileutils'
 gem 'sinatra'
 gem 'activerecord'
 gem 'sinatra-activerecord'
-gem 'sqlite3'
+gem 'pg'
 
 group :test do
   gem 'capybara'

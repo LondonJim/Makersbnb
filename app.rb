@@ -1,14 +1,19 @@
+require 'dotenv'
 require 'fileutils'
 require 'sinatra'
 require 'sinatra/base'
 require 'sinatra/activerecord'
+require 'pg'
+
 
 if ENV['ENVIRONMENT'] == 'test'
-  FileUtils.touch("db/makersbnb_test.sqlite3")
-  set :database, { adapter: "sqlite3", database: "./db/makersbnb_test.sqlite3"}
+  uri = URI.parse(ENV["URL_TEST"])
+  ActiveRecord::Base.establish_connection(adapter: 'postgresql', host: uri.host, username: uri.user, password: uri.password, database: uri.path.sub('/', ''))
 else
-  set :database, { adapter: "sqlite3", database: "./db/makersbnb.sqlite3"}
+  uri = URI.parse(ENV["URL"])
+  ActiveRecord::Base.establish_connection(adapter: 'postgresql', host: uri.host, username: uri.user, password: uri.password, database: uri.path.sub('/', ''))
 end
+  
 
 require './lib/space'
 require './lib/user'
