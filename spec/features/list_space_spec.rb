@@ -38,4 +38,10 @@ feature 'View spaces' do
     visit('/spaces')
     expect(page).to have_content "10/09/2018, 11/09/2018"
   end
+
+  scenario 'user can set availability of space' do
+    visit('/')
+    click_link 'Add'
+    expect(page).to have_content('Dates')
+  end
 end

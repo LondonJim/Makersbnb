@@ -1,3 +1,4 @@
+
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
@@ -31,15 +32,17 @@
   </nav>
 
   <form action="/spaces/create" method="post">
-    <input type="text" name="user_id"> User id
+    <input type="text" name="user_id" required> User id
     <br>
-    <input type="text" name="name"> Space Name
+    <input type="text" name="name" required> Space Name
     <br>
-    <input type="text" name="info"> Info
+    <input type="text" name="info" required> Info
     <br>
-    <input type="text" name="location"> Location
+    <input type="text" name="location" required> Location
     <br>
-    <input type="text" name="price"> Price
+    <input type="text" name="price" required> Price
+    <br>
+    <input type="date" name="date" required> Date
     <br>
     <br>
     <input type="submit" value="Add space">
