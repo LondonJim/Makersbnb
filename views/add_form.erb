@@ -7,7 +7,6 @@
   <div class="jumbotron text-center" style="margin-bottom:0">
     <h1> MakersBnB </h1>
   </div>
-
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a class="navbar-brand" href="#">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -30,21 +29,38 @@
       </ul>
     </div>
   </nav>
-
-  <form action="/spaces/create" method="post">
-    <input type="text" name="user_id" required> User id
-    <br>
-    <input type="text" name="name" required> Space Name
-    <br>
-    <input type="text" name="info" required> Info
-    <br>
-    <input type="text" name="location" required> Location
-    <br>
-    <input type="text" name="price" required> Price
-    <br>
-    <input type="date" name="date" required> Date
-    <br>
-    <br>
-    <input type="submit" value="Add space">
-  </form>
+  <div>
+   Add New Space
+    <form action="/spaces/create" method="post">
+      <input type="text" name="user_id" required> User id
+      <br>
+      <input type="text" name="name" required> Space Name
+      <br>
+      <input type="text" name="info" required> Info
+      <br>
+      <input type="text" name="location" required> Location
+      <br>
+      <input type="text" name="price" required> Price
+      <br>
+      <input type="date" name="date" required> Date Available
+      <br>
+      <br>
+      <input type="submit" value="Add New Space">
+    </form>
+  </div>
+  <br>
+  <br>
+  <div>
+    Add Date to Exisiting Space
+    <form action="/spaces/update" method="post">
+      <input type="text" name="user_id_2" required> User id
+      <br>
+      <input type="text" name="name_2" required> Space Name
+      <br>
+      <input type="date" name="date_2" required> Date
+      <br>
+      <br>
+      <input type="submit" value="Add New Date">
+    </form>
+  </div>
 </body>

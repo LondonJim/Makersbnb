@@ -73,13 +73,29 @@ class MakersBnB < Sinatra::Base
       location: params[:location],
       price: params[:price]
       )
+
+    space = Space.find_by(name: params[:name])
+
     Availability.create(
-      space_id: Space.last.id,
+      space_id: space.id,
       date: params[:date]
       )
 
       flash[:notice] = "Space successfully added"
 
+    redirect '/'
+  end
+
+  post '/spaces/update' do
+    space = Space.find_by(name: params[:name_2])
+    space_user_id = space.user_id
+    if params[:user_id_2] == space_user_id.to_s
+      Availability.create(
+        space_id: space.id,
+        date: params[:date_2]
+        )
+        flash[:notice] = "Date successfully added to Space"
+    end
     redirect '/'
   end
 
