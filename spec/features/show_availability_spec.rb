@@ -15,6 +15,6 @@ feature 'Show space availability' do
 
     click_link "Samir's Super Shack"
 
-    expect(page).to have_content "2018-09-11"
+    expect(page).to have_content "2018-09-10"
   end
 end
