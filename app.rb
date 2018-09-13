@@ -38,15 +38,15 @@ class MakersBnB < Sinatra::Base
 
   post '/signup' do
     flash[:error] = "Passwords do not match" if params[:password] != params[:password_confirmation]
-    session[:user] = User.sign_up(
+    session[:current_user] = User.sign_up(
       name: params[:name],
       handle: params[:handle],
       email: params[:email],
       password: params[:password],
       password_confirmation: params[:password_confirmation]
     )
-    flash[:success] = "Signup successful, you are now logged in as #{session[:user].name}" if session[:user] != nil
-    flash[:error] = session[:user].errors.full_messages.to_sentence unless session[:user] == nil
+    flash[:success] = "Signup successful, you are now logged in as #{session[:current_user].name}" if session[:current_user] != nil
+    flash[:error] = session[:user].errors.full_messages.to_sentence unless session[:current_user] == nil
     redirect '/signup'
   end
 
@@ -55,8 +55,8 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/login' do
-    flash[:error] = "Already logged in as #{session[:user].handle}" if session[:user] != nil
-    redirect '/login' if session[:user] != nil
+    flash[:error] = "Already logged in as #{session[:current_user].handle}" if session[:current_user] != nil
+    redirect '/login' if session[:current_user] != nil
     session[:current_user] = User.find_by(handle: params[:handle]) if User.login(handle: params[:handle], password: params[:password])
     flash[:error] = 'No details held' if session[:current_user] == nil
     redirect '/login'
@@ -105,6 +105,10 @@ class MakersBnB < Sinatra::Base
     @space = Space.find_or_initialize_by(id: @id)
     @available_dates = @space.availabilities.map { |a| a.date }
     erb :space
+  end
+
+  get '/space/:id/:date' do
+    erb :new_message
   end
 
   get '/members_area' do
