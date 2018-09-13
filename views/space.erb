@@ -35,7 +35,7 @@
   <br>
 
   <% @available_dates.each do |a| %>
-    <a href="/space/:id/:date">
+    <a href="/space/<%= @space.id %>/<%= a %>">
       <%= a %>
     </a>
     <br>

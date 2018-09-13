@@ -46,7 +46,7 @@ class MakersBnB < Sinatra::Base
       password_confirmation: params[:password_confirmation]
     )
     flash[:success] = "Signup successful, you are now logged in as #{session[:current_user].name}" if session[:current_user] != nil
-    flash[:error] = session[:user].errors.full_messages.to_sentence unless session[:current_user] == nil
+    flash[:error] = session[:current_user].errors.full_messages.to_sentence unless session[:current_user] == nil
     redirect '/signup'
   end
 
