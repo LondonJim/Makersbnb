@@ -43,16 +43,15 @@
   </h1>
   <br>
   <br>
-
   <% @available_dates.each do |a| %>
     <%= a %>
       <br>
       <br>
   <% end %>
-
       <br>
       <br>
-      <% if session[:current_user] != nil %>
+      <% if @real_owner %>
+      <!--  if session[:current_user] is same as user id owner of space -->
       Add Date to Space
       <form action="/spaces/update" method="post">
         <input type="date" name="date" required> Date

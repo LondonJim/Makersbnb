@@ -44,6 +44,8 @@
   </nav>
   <br>
   <center><%= flash[:notice] %></center>
+
+<a href="/spaces/create">Add New Space</a>
   <% @space.each do |space| %>
     <ul>
       <a href='/space/<%= space.id %>'>

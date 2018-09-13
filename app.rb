@@ -73,36 +73,25 @@ class MakersBnB < Sinatra::Base
     redirect '/members_area'
   end
 
-  get '/add_form' do
+  get '/spaces/create' do
     erb :add_form
   end
 
   post '/spaces/create' do
     Space.create(
-      user_id: params[:user_id],
+      user_id: session[:current_user].id,
       name: params[:name],
       info: params[:info],
       location: params[:location],
       price: params[:price]
       )
-
-    space = Space.find_by(name: params[:name])
-
-    Availability.create(
-      space_id: space.id,
-      date: params[:date]
-      )
-
       flash[:notice] = "Space successfully added"
-
-    redirect '/'
+    redirect '/members_area'
   end
 
   post '/spaces/update' do
     space = Space.find_by(id: session[:space_id])
     space_user_id = space.user_id
-    p space_user_id
-    p session[:current_user].id
     if session[:current_user].id == space_user_id
       Availability.create(
         space_id: space.id,
@@ -116,6 +105,9 @@ class MakersBnB < Sinatra::Base
   get '/space/:id' do
     session[:space_id] = params[:id]
     @space = Space.find_or_initialize_by(id: session[:space_id])
+    if session[:current_user] != nil
+      @real_owner = true if @space.user_id == session[:current_user].id
+    end
     @available_dates = @space.availabilities.map { |a| a.date }
     erb :space
   end

@@ -2,7 +2,6 @@ feature 'Create spaces' do
   scenario 'Logged in user can add a space' do
     visit('/')
     add_first_user_and_confirm
-    # log in
 
     add_first_space_and_confirm
 
