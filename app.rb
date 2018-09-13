@@ -55,6 +55,8 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/login' do
+    flash[:error] = "Already logged in as #{session[:user].handle}" if session[:user] != nil
+    redirect '/login' if session[:user] != nil
     session[:current_user] = User.find_by(handle: params[:handle]) if User.login(handle: params[:handle], password: params[:password])
     flash[:error] = 'No details held' if session[:current_user] == nil
     redirect '/login'
