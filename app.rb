@@ -50,6 +50,11 @@ class MakersBnB < Sinatra::Base
     redirect '/signup'
   end
 
+  post '/sign_out' do
+    session[:current_user] = nil
+    redirect '/'
+  end
+
   get '/login' do
     erb :login
   end
