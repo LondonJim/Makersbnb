@@ -1,4 +1,3 @@
-
 def add_first_space_and_confirm
   click_link 'Members Area'
   click_link 'Add'
@@ -12,8 +11,9 @@ def add_first_space_and_confirm
   click_button 'Add New Space'
 end
 
+
 def add_second_space_and_confirm
-  click 'Members Area'
+  click_link 'Members Area'
   click_link 'Add'
   fill_in :user_id, with: '2'
   fill_in :name, with: "Harry's Happy House"
@@ -21,7 +21,6 @@ def add_second_space_and_confirm
   fill_in :location, with: 'Right here'
   fill_in :price, with: '5000'
   fill_in :date, with: '2018-09-11'
-  # date to be changed in line with calendar changes
   click_button 'Add New Space'
 end
 
@@ -40,5 +39,5 @@ def add_extra_availability_and_confirm
   fill_in :user_id_2, with: '1'
   fill_in :name_2, with: "Samir's Super Shack"
   fill_in :date_2, with: '2018-12-10'
-  click_button 'Add New Data'
+  click_button 'Add New Date'
 end
