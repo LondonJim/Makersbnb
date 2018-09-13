@@ -19,22 +19,39 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
         <li>
-          <a class="nav-link" href="/spaces">View</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/add_form">Add</a>
-        </li>
-        <li>
           <a class="nav-link" href="/login">Login</a>
         </li>
         <li>
           <a class="nav-link" href="/signup">Signup</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/members_area">Members Area</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/messages">Messages</a>
         </li>
       </ul>
     </div>
   </nav>
   <br>
   <center><%= flash[:notice] %></center>
+  <% @spaces.each do |space| %>
+    <ul>
+      <a href='/space/<%=space.id%>'>
+        <%= space.name %>
+      </a>
+      </li>
+      <li>Info:
+        <%= space.info %>
+      </li>
+      <li>Location:
+        <%= space.location %>
+      </li>
+      <li>Price:
+        <%= space.price %>
+      </li>
+    </ul>
+    <% end %>
 </body>
 
 </html>

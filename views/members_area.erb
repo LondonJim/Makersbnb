@@ -1,10 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+  <title>Makers BnB</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 
-<body style="text-align: center">
+<body>
   <div class="jumbotron text-center" style="margin-bottom:0">
-    <h1>MakersBnB</h1>
+    <h1>Makers BnB</h1>
+    <p>Hire and rent spaces</p>
   </div>
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a class="navbar-brand" href="#">Home</a>
@@ -13,6 +18,9 @@
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
+        <li>
+          <a class="nav-link" href="/add_form">Add</a>
+        </li>
         <li>
           <a class="nav-link" href="/login">Login</a>
         </li>
@@ -28,25 +36,8 @@
       </ul>
     </div>
   </nav>
-  <h1>
-    Available dates for
-    <%= @space.name %>
-  </h1>
   <br>
-  <br>
-
-  <% @available_dates.each do |a| %>
-    <%= a %>
-      <br>
-      <br>
-      <% end %>
-
-        <br>
-        <br>
-        <form action="/spaces" method="get">
-          <input type="submit" value="Back">
-        </form>
-        <form action="/" method="get">
-          <input type="submit" value="Home">
-        </form>
+  <center><%= flash[:notice] %></center>
 </body>
+
+</html>

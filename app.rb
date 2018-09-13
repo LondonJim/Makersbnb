@@ -28,6 +28,7 @@ class MakersBnB < Sinatra::Base
   enable :sessions
 
   get '/' do
+    @spaces = Space.all
     erb :index
   end
 
