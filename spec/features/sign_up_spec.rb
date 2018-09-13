@@ -1,24 +1,15 @@
-feature "sign up" do
-  scenario "can enter details on sign up page" do
+feature "Sign up" do
+  scenario "User can sign up with their details" do
     visit "/"
-    click_link "Signup"
-    fill_in :name, with: "Samir"
-    fill_in :handle, with: "Lazy"
-    fill_in :email, with: "someemail@email.com"
-    fill_in :password, with: "password1"
-    click_button "Submit"
+
+    add_first_user_and_confirm
 
     expect(page).to have_content("Welcome Samir, signup successful")
   end
 
-  scenario "can't sign up with existing username" do
+  scenario "User can't sign up with an existing username" do
     visit "/"
-    click_link "Signup"
-    fill_in :name, with: "Samir"
-    fill_in :handle, with: "Lazy"
-    fill_in :email, with: "someemail@email.com"
-    fill_in :password, with: "password1"
-    click_button "Submit"
+    add_first_user_and_confirm
 
     click_link "Signup"
     fill_in :name, with: "Samir"
@@ -32,12 +23,7 @@ feature "sign up" do
 
   scenario "can't sign up with existing username" do
     visit "/"
-    click_link "Signup"
-    fill_in :name, with: "Samir"
-    fill_in :handle, with: "Lazy"
-    fill_in :email, with: "someemail@email.com"
-    fill_in :password, with: "password1"
-    click_button "Submit"
+    add_first_user_and_confirm
 
     click_link "Signup"
     fill_in :name, with: "Samir"
