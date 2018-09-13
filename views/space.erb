@@ -37,6 +37,8 @@
   <% @available_dates.each do |a| %>
     <a href="/space/<%= @space.id %>/<%= a %>">
       <%= a %>
+        <input type="hidden" name="space_id" value="<%= @space.id %>">
+        <input type="hidden" name="date" value="<%= a %>">
     </a>
     <br>
     <br>

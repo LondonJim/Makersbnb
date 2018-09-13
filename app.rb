@@ -109,6 +109,18 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/space/:id/:date' do
+    @space_id = params[:id]
+    @date = params[:date]
+    erb :new_message
+  end
+
+  post '/new_message' do
+    Message.create(
+      user_id: session[:current_user].id,
+      space_id: params[:id],
+      dates: params[:date],
+      status: false
+    )
     erb :new_message
   end
 

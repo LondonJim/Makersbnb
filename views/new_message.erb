@@ -27,5 +27,10 @@
     </div>
   </nav>
 
+  <form action="/new_message" method="post">
+    <input type="hidden" name="space_id" value="<%= @space_id %>">
+    <input type="hidden" name="date" value="<%= @date %>">
+    <input type="submit" value="Enquire">
+  </form>
 
 </body>
