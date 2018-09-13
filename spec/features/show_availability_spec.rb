@@ -1,15 +1,24 @@
-Capybara.app = MakersBnB
+feature 'Show space availability' do
+  scenario 'non-logged in users can see availability of spaces' do
+    visit('/')
+    add_first_space_and_confirm
+    add_second_space_and_confirm
+    click_link('View')
 
-  # As a user,
-  # So I can let people know when the space is available,
-  # I want to be able to list a range of dates of availability.
-feature 'to be changed' do
-  scenario 'user can availability of spaces' do
-    add_three_spaces
-    add_availability_for_three_spaces
-    visit('/spaces')
-    click_link('spacename1')
-    expect(page).to have_content(100918)
-    expect(page).to have_content(110918)
+    # recheck out dates and availability are stored
+    expect(page).to include "10/09/2018"
+    expect(page).to include "11/09/2018"
+  end
+
+  scenario 'logged in users can see availability of spaces' do
+    visit ('/')
+    # log in process
+    add_first_space_and_confirm
+    add_second_space_and_confirm
+    click_link('View')
+
+    # recheck out dates and availability are stored
+    expect(page).to include "10/09/2018"
+    expect(page).to include "11/09/2018"
   end
 end
