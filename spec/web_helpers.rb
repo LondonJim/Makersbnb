@@ -1,5 +1,6 @@
 
 def add_first_space_and_confirm
+  click_link 'Members Area'
   click_link 'Add'
   fill_in :user_id, with: '1'
   fill_in :name, with: "Samir's Super Shack"
@@ -8,11 +9,11 @@ def add_first_space_and_confirm
   fill_in :price, with: '1000000'
   fill_in :date, with: '2018-09-10'
   # date to be changed in line with calendar changes
-  click_button 'Add space'
-  expect(page).to have_content("Space successfully added")
+  click_button 'Add New Space'
 end
 
 def add_second_space_and_confirm
+  click 'Members Area'
   click_link 'Add'
   fill_in :user_id, with: '2'
   fill_in :name, with: "Harry's Happy House"
@@ -21,8 +22,7 @@ def add_second_space_and_confirm
   fill_in :price, with: '5000'
   fill_in :date, with: '2018-09-11'
   # date to be changed in line with calendar changes
-  click_button 'Add space'
-  expect(page).to have_content("Space successfully added")
+  click_button 'Add New Space'
 end
 
 def add_first_user_and_confirm
@@ -32,4 +32,13 @@ def add_first_user_and_confirm
   fill_in :email, with: "someemail@email.com"
   fill_in :password, with: "password1"
   click_button "Submit"
+end
+
+def add_extra_availability_and_confirm
+  click_link 'Members Area'
+  click_link 'Add'
+  fill_in :user_id_2, with: '1'
+  fill_in :name_2, with: "Samir's Super Shack"
+  fill_in :date_2, with: '2018-12-10'
+  click_button 'Add New Data'
 end
