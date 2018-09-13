@@ -45,7 +45,7 @@ class MakersBnB < Sinatra::Base
       password: params[:password],
       password_confirmation: params[:password_confirmation]
     )
-    flash[:success] = "Signup successful, you are now logged in as #{session[:user].name}"
+    flash[:success] = "Signup successful, you are now logged in as #{session[:user].name}" if session[:user] != nil
     flash[:error] = session[:user].errors.full_messages.to_sentence unless session[:user] == nil
     redirect '/signup'
   end
@@ -55,6 +55,8 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/login' do
+    flash[:error] = "Already logged in as #{session[:user].handle}" if session[:user] != nil
+    redirect '/login' if session[:user] != nil
     session[:current_user] = User.find_by(handle: params[:handle]) if User.login(handle: params[:handle], password: params[:password])
     flash[:error] = 'No details held' if session[:current_user] == nil
     redirect '/login'
