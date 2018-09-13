@@ -38,15 +38,15 @@ class MakersBnB < Sinatra::Base
 
   post '/signup' do
     flash[:error] = "Passwords do not match" if params[:password] != params[:password_confirmation]
-    session[:user] = User.sign_up(
+    session[:current_user] = User.sign_up(
       name: params[:name],
       handle: params[:handle],
       email: params[:email],
       password: params[:password],
       password_confirmation: params[:password_confirmation]
     )
-    flash[:success] = "Signup successful, you are now logged in as #{session[:user].name}" if session[:user] != nil
-    flash[:error] = session[:user].errors.full_messages.to_sentence unless session[:user] == nil
+    flash[:success] = "Signup successful, you are now logged in as #{session[:current_user].name}" if session[:current_user] != nil
+    flash[:error] = session[:current_user].errors.full_messages.to_sentence unless session[:current_user] == nil
     redirect '/signup'
   end
 

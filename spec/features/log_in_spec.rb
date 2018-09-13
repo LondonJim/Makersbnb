@@ -1,3 +1,5 @@
+# this requires a log out to be a full test
+
 feature 'logging in' do
   scenario 'user tries to log in' do
     visit '/'
@@ -6,8 +8,9 @@ feature 'logging in' do
     click_link 'Login'
     fill_in :handle, with: 'Lazy'
     fill_in :password, with: 'password1'
+    click_button 'Submit'
 
-    expect(page).to have_content('Welcome Lazy')
+    expect(page).to have_content('Hello, Samir')
     # expect(current_path).to be('/')
     # probably lead to membership page
   end
