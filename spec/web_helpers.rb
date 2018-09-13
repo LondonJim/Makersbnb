@@ -31,9 +31,7 @@ end
 
 def add_extra_availability_and_confirm
   click_link 'Members Area'
-  click_link 'Add'
-  fill_in :user_id_2, with: '1'
-  fill_in :name_2, with: "Samir's Super Shack"
-  fill_in :date_2, with: '2018-12-10'
+  click_link "Samir's Super Shack"
+  fill_in :date, with: '2018-12-10'
   click_button 'Add New Date'
 end

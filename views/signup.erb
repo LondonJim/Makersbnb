@@ -38,7 +38,9 @@
       </ul>
     </div>
   </nav>
-
+  <center>
+    <%= flash[:notice] %>
+  </center>
   <form action="/signup" method="post">
     <input type="text" name="name" required> Name
     <br>
@@ -54,8 +56,6 @@
     <input type="submit" value="Submit">
   </form>
 
-  <center>
-    <%= flash[:notice] %>
-  </center>
+
 
 </body>

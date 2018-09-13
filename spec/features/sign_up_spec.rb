@@ -10,6 +10,7 @@ feature "Sign up" do
   scenario "User can't sign up with an existing username" do
     visit "/"
     add_first_user_and_confirm
+    click_link "Sign Out"
 
     click_link "Signup"
     fill_in :name, with: "Samir"
@@ -25,6 +26,7 @@ feature "Sign up" do
   scenario "can't sign up with existing username" do
     visit "/"
     add_first_user_and_confirm
+    click_link "Sign Out"
 
     click_link "Signup"
     fill_in :name, with: "Samir"
@@ -34,6 +36,6 @@ feature "Sign up" do
     fill_in :password_confirmation, with: "password1"
     click_button "Submit"
 
-    expect(page).to have_content("Handle has already been taken")
+    expect(page).to have_content("Username has already been taken")
   end
 end

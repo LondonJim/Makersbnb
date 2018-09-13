@@ -37,18 +37,28 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/signup' do
-    flash[:notice] = "Passwords do not match" if params[:password] != params[:password_confirmation]
-    session[:current_user] = User.sign_up(
-      name: params[:name],
-      handle: params[:handle],
-      email: params[:email],
-      password: params[:password],
-      password_confirmation: params[:password_confirmation]
-    )
-    flash[:notice] = session[:current_user].errors.full_messages.to_sentence unless session[:current_user] == nil
+    if params[:password] != params[:password_confirmation]
+      flash[:notice] = "Passwords do not match"
+      redirect '/signup'
+    elsif User.find_by(handle: params[:handle]) != nil
+      flash[:notice] = "Username has already been taken"
+      redirect '/signup'
+    elsif User.find_by(email: params[:email]) != nil
+      flash[:notice] = "Email has already been taken"
+      redirect '/signup'
+    else
+      session[:current_user] = User.sign_up(
+        name: params[:name],
+        handle: params[:handle],
+        email: params[:email],
+        password: params[:password],
+        password_confirmation: params[:password_confirmation]
+      )
+    end
+
+    flash[:notice] = session[:current_user].errors.full_messages.to_sentence if session[:current_user] != nil
     flash[:notice] = "Signup successful, you are now logged in as #{session[:current_user].name}" if session[:current_user] != nil
     redirect '/members_area' if session[:current_user] != nil
-    redirect '/signup'
   end
 
   get '/sign_out' do
@@ -64,14 +74,23 @@ class MakersBnB < Sinatra::Base
   post '/login' do
     flash[:notice] = "Already logged in as #{session[:current_user].handle}" if session[:current_user] != nil
     redirect '/login' if session[:current_user] != nil
-    session[:current_user] = User.find_by(handle: params[:handle]) if User.login(handle: params[:handle], password: params[:password])
+
+    if User.find_by(handle: params[:handle]) != nil
+      session[:current_user] = User.find_by(handle: params[:handle]) if User.login(handle: params[:handle], password: params[:password])
+    end
+
     if session[:current_user] == nil
       flash[:notice] = 'No details held'
       redirect '/login'
     end
+
     flash[:notice] = "Welcome, #{session[:current_user].handle}"
     redirect '/members_area'
   end
+
+  # if session[:current_user] != nil
+  #   @real_owner = true if @space.user_id == session[:current_user].id
+  # end
 
   get '/spaces/create' do
     erb :add_form
