@@ -44,6 +44,23 @@
   </nav>
   <br>
   <center><%= flash[:notice] %></center>
+  <% @space.each do |space| %>
+    <ul>
+      <a href='/space/<%= space.id %>'>
+        <%= space.name %>
+      </a>
+      </li>
+      <li>Info:
+        <%= space.info %>
+      </li>
+      <li>Location:
+        <%= space.location %>
+      </li>
+      <li>Price:
+        <%= space.price %>
+      </li>
+    </ul>
+    <% end %>
 </body>
 
 </html>

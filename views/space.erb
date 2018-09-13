@@ -48,14 +48,18 @@
     <%= a %>
       <br>
       <br>
-      <% end %>
+  <% end %>
 
+      <br>
+      <br>
+      <% if session[:current_user] != nil %>
+      Add Date to Space
+      <form action="/spaces/update" method="post">
+        <input type="date" name="date" required> Date
         <br>
         <br>
-        <form action="/spaces" method="get">
-          <input type="submit" value="Back">
-        </form>
-        <form action="/" method="get">
-          <input type="submit" value="Home">
-        </form>
+        <input type="submit" value="Add New Date">
+      </form>
+      <% end %>
+      <%= flash[:notice] %>
 </body>

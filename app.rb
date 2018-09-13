@@ -37,7 +37,7 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/signup' do
-    flash[:error] = "Passwords do not match" if params[:password] != params[:password_confirmation]
+    flash[:notice] = "Passwords do not match" if params[:password] != params[:password_confirmation]
     session[:current_user] = User.sign_up(
       name: params[:name],
       handle: params[:handle],
@@ -45,13 +45,15 @@ class MakersBnB < Sinatra::Base
       password: params[:password],
       password_confirmation: params[:password_confirmation]
     )
-    flash[:success] = "Signup successful, you are now logged in as #{session[:current_user].name}" if session[:current_user] != nil
-    flash[:error] = session[:current_user].errors.full_messages.to_sentence unless session[:current_user] == nil
+    flash[:notice] = session[:current_user].errors.full_messages.to_sentence unless session[:current_user] == nil
+    flash[:notice] = "Signup successful, you are now logged in as #{session[:current_user].name}" if session[:current_user] != nil
+    redirect '/members_area' if session[:current_user] != nil
     redirect '/signup'
   end
 
-  post '/sign_out' do
+  get '/sign_out' do
     session[:current_user] = nil
+    flash[:notice] = "You have signed out, see you again soon!"
     redirect '/'
   end
 
@@ -60,11 +62,15 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/login' do
-    flash[:error] = "Already logged in as #{session[:user].handle}" if session[:user] != nil
-    redirect '/login' if session[:user] != nil
+    flash[:notice] = "Already logged in as #{session[:current_user].handle}" if session[:current_user] != nil
+    redirect '/login' if session[:current_user] != nil
     session[:current_user] = User.find_by(handle: params[:handle]) if User.login(handle: params[:handle], password: params[:password])
-    flash[:error] = 'No details held' if session[:current_user] == nil
-    redirect '/login'
+    if session[:current_user] == nil
+      flash[:notice] = 'No details held'
+      redirect '/login'
+    end
+    flash[:notice] = "Welcome, #{session[:current_user].handle}"
+    redirect '/members_area'
   end
 
   get '/add_form' do
@@ -93,26 +99,29 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/spaces/update' do
-    space = Space.find_by(name: params[:name_2])
+    space = Space.find_by(id: session[:space_id])
     space_user_id = space.user_id
-    if params[:user_id_2] == space_user_id.to_s
+    p space_user_id
+    p session[:current_user].id
+    if session[:current_user].id == space_user_id
       Availability.create(
         space_id: space.id,
-        date: params[:date_2]
+        date: params[:date]
         )
         flash[:notice] = "Date successfully added to Space"
     end
-    redirect '/'
+    redirect "/space/#{space.id}"
   end
 
   get '/space/:id' do
-    @id = params[:id]
-    @space = Space.find_or_initialize_by(id: @id)
+    session[:space_id] = params[:id]
+    @space = Space.find_or_initialize_by(id: session[:space_id])
     @available_dates = @space.availabilities.map { |a| a.date }
     erb :space
   end
 
   get '/members_area' do
+    @space = Space.where(user_id: session[:current_user].id)
     erb :members_area
   end
 
