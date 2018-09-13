@@ -36,11 +36,12 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/signup' do
+    encrypted_pword = BCrypt::Password.create(params[:password])
     session[:user] = User.create(
       name: params[:name],
       handle: params[:handle],
       email: params[:email],
-      password: params[:password]
+      password: encrypted_pword
     )
     flash[:error] = session[:user].errors.full_messages.to_sentence unless session[:user] == nil
     redirect '/signup'

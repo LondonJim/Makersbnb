@@ -11,6 +11,6 @@ class User < ActiveRecord::Base
   def self.login(handle:, password:)
     validates :handle, presence: true
     validates :password, presence: true
-    User.find_by(handle: handle).password == password
+    BCrypt::Password.new(User.find_by(handle: handle).password) == password
   end
 end
