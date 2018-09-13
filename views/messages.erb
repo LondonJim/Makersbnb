@@ -1,12 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+  <title>Makers BnB</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 
 <body>
   <div class="jumbotron text-center" style="margin-bottom:0">
-    <h1> MakersBnB </h1>
+    <h1>Makers BnB</h1>
+    <p>Hire and rent spaces</p>
   </div>
-
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a class="navbar-brand" href="/">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -15,32 +19,15 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
         <li>
-          <a class="nav-link" href="/login">Login</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/signup">Signup</a>
-        </li>
-        <li>
           <a class="nav-link" href="/members_area">Members Area</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/messages">Messages</a>
         </li>
       </ul>
     </div>
   </nav>
-
-  <form action="/login" method="post">
-    <input type="text" name="handle" required>
-    <input type="text" name="password" required>
-    <br>
-    <br>
-    <input type="submit" value="Submit">
-  </form>
-
-  <center>
-    <h1>
-      <%= "Hello, #{session[:current_user].name}" unless session[:current_user] == nil %>
-    </h1>
-    <h1>
-      <%= flash[:error] %>
-    </h1>
-  </center>
+  <br>
 </body>
+
+</html>

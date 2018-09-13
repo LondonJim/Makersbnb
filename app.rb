@@ -62,11 +62,6 @@ class MakersBnB < Sinatra::Base
     erb :add_form
   end
 
-  get '/spaces' do
-    @spaces = Space.all
-    erb :spaces
-  end
-
   post '/spaces/create' do
     Space.create(
       user_id: params[:user_id],
@@ -106,6 +101,14 @@ class MakersBnB < Sinatra::Base
     @space = Space.find_or_initialize_by(id: @id)
     @available_dates = @space.availabilities.map { |a| a.date }
     erb :space
+  end
+
+  get '/members_area' do
+    erb :members_area
+  end
+
+  get '/members_area/messages' do
+    erb :messages
   end
 
   run! if app_file == $0
