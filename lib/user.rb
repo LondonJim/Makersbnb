@@ -13,4 +13,15 @@ class User < ActiveRecord::Base
     validates :password, presence: true
     BCrypt::Password.new(User.find_by(handle: handle).password) == password
   end
+
+  def self.sign_up(name:, handle:, email:, password:, password_confirmation:)
+    return nil if password != password_confirmation
+    encrypted_pword = BCrypt::Password.create(password)
+    User.create(
+      name: name,
+      handle: handle,
+      email: email,
+      password: encrypted_pword
+    )
+  end
 end

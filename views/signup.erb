@@ -35,15 +35,18 @@
     <br>
     <input type="text" name="handle" required> Username
     <br>
-    <input type="text" name="email" required> Email
+    <input type="email" name="email" required> Email
     <br>
-    <input type="text" name="password" required> Password
+    <input type="password" name="password" required> Password
+    <br>
+    <input type="password" name="password_confirmation" required> Re-enter Password
     <br>
     <br>
     <input type="submit" value="Submit">
   </form>
 
   <center>
+    <%= flash[:success] %>
     <%= flash[:error] %>
   </center>
 
