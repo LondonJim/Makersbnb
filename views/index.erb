@@ -7,17 +7,15 @@
 </head>
 
 <body>
-  <div class="jumbotron text-center" style="margin-bottom:0">
-    <h1>Makers BnB</h1>
-    <p>Hire and rent spaces</p>
-  </div>
+  <img class="img-fluid" src="header.png">
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a class="navbar-brand" href="/">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav">
+
+      <ul class="navbar-nav ml-auto">
         <% if session[:current_user] == nil %>
         <li>
           <a class="nav-link" href="/login">Login</a>
@@ -40,27 +38,48 @@
         </li>
         <% end %>
       </ul>
+
     </div>
   </nav>
   <br>
+
+
   <center><%= flash[:notice] %></center>
-  <% @spaces.each do |space| %>
-    <ul>
-      <a href='/space/<%=space.id%>'>
-        <%= space.name %>
-      </a>
-      </li>
-      <li>Info:
-        <%= space.info %>
-      </li>
-      <li>Location:
-        <%= space.location %>
-      </li>
-      <li>Price:
-        <%= space.price %>
-      </li>
-    </ul>
-    <% end %>
+  <div class="row">
+    <% @spaces.each do |space| %>
+      <ul>
+        <div class="container rounded" style='background-color: LightGrey'>
+          <!-- <div class="row"> -->
+            <div class="col-sm pb-4">
+              <a href='/space/<%=space.id%>'>
+              <br>
+              <img src="https://cdn.pixabay.com/photo/2016/11/18/17/46/architecture-1836070_1280.jpg" alt="Default House" style="width:200px;height:100px;">
+              <br>
+                <%= space.name %>
+              </a>
+              </li>
+              <li>Info:
+                <%= space.info %>
+              </li>
+              <li>Location:
+                <%= space.location %>
+              </li>
+              <li>Price:
+                <%= space.price %>
+              </li>
+            </div>
+          <!-- </div> -->
+        </div>
+      </ul>
+      <% end %>
+
+  </div>
+
+  </div>
+
+
+</div>
+
 </body>
 
 </html>
