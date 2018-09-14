@@ -152,8 +152,12 @@ class MakersBnB < Sinatra::Base
     erb :messages
   end
 
-  get '/confirm_message/:space_id' do
-
+  post '/confirm_message/:space_id' do
+    Booking.create(
+      user_id: params[:userId],
+      space_id: params[:spaceId],
+      date: params[:dates]
+    )
     erb :confirm_message
   end
 

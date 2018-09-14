@@ -47,8 +47,11 @@
     <h5> <%= m.space_id %> </h5>
     <h5> <%= m.user_id %> </h5>
     <h5> <%= m.dates %> </h5>
-    <form action="/confirm_message/<%= m.space_id %>" method="get">
-      <input type="submit" value="Reply">
+    <form action="/confirm_message/<%= m.space_id %>" method="post">
+      <input type="hidden" id="spaceId" name="spaceId" value="<%= m.space_id %>">
+      <input type="hidden" id="userId" name="userId" value="<%= m.user_id %>">
+      <input type="hidden" id="dates" name="dates" value="<%= m.dates %>">
+      <input type="submit" id="messageCorrespondance" value="Reply">
     </form>
     <br><br>
     <% end %>
