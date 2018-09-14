@@ -2,19 +2,29 @@
 
 MakerBnB is a web application that allows users to both list their spaces for hire, and hire spaces from other users.
 
-Tags: Ruby, Selenium, Rspec, Capybara, Javascript, Jasmine, ActiveRecord, Sqlite3
+Tags: Ruby, Rspec, Capybara, JavaScript, ActiveRecord, JQuery, PG, Sinatra, Bcrypt
 
 ### Dev Team
 
 
+[James Sutherland](https://github.com/LondonJim)
 
-### Domain Model
+[Harry James Pugh](https://github.com/hjpugh)
 
-![Imgur](https://i.imgur.com/WWyeSFv.png)
+[Kar-ho Lee](https://github.com/leekarho)
+
+[Samir Soormally](https://github.com/LazySamir)
+
+
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/hjpugh/Makersbnb.svg?columns=all)](https://waffle.io/hjpugh/Makersbnb)
 
 ### Database Model
 
 ![Imgur](https://i.imgur.com/ACWUR2C.png)
+
+### Initial Domain Model
+
+![Imgur](https://i.imgur.com/WWyeSFv.png)
 
 ###  Setup Instructions
 ```
