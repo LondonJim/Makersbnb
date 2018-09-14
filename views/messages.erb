@@ -15,41 +15,50 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav ml-auto">
         <% if session[:current_user] == nil %>
-        <li>
-          <a class="nav-link" href="/login">Login</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/signup">Signup</a>
-        </li>
-        <% else %>
-        <li>
-          <a class="nav-link">Hello, <%= session[:current_user].handle %></a>
-        </li>
-        <li>
-          <a class="nav-link" href="/sign_out">Sign Out</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/members_area">Members Area</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/members_area/messages">Messages</a>
-        </li>
-        <% end %>
+          <li>
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li>
+            <a class="nav-link" href="/signup">Signup</a>
+          </li>
+          <% else %>
+            <li>
+              <a class="nav-link">Hello,
+                <%= session[:current_user].handle %>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" href="/sign_out">Sign Out</a>
+            </li>
+            <li>
+              <a class="nav-link" href="/members_area">Members Area</a>
+            </li>
+            <li>
+              <a class="nav-link" href="/members_area/messages">Messages</a>
+            </li>
+            <% end %>
       </ul>
     </div>
   </nav>
   <br>
   <% @messages.each do |m| %>
-    <h5> <%= m.space_id %> </h5>
-    <h5> <%= m.user_id %> </h5>
-    <h5> <%= m.dates %> </h5>
+    <h5>
+      <%= m.space_id %>
+    </h5>
+    <h5>
+      <%= m.user_id %>
+    </h5>
+    <h5>
+      <%= m.dates %>
+    </h5>
     <form action="/confirm_message/<%= m.space_id %>" method="post">
       <input type="hidden" id="spaceId" name="spaceId" value="<%= m.space_id %>">
       <input type="hidden" id="userId" name="userId" value="<%= m.user_id %>">
       <input type="hidden" id="dates" name="dates" value="<%= m.dates %>">
       <input type="submit" id="messageCorrespondance" value="Reply">
     </form>
-    <br><br>
+    <br>
+    <br>
     <% end %>
 
 
