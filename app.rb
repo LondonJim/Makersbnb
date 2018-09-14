@@ -147,7 +147,7 @@ class MakersBnB < Sinatra::Base
     spaces = Space.find_each.select { |s| s.user_id == session[:current_user].id }
     @messages = []
     space_ids = spaces.map { |s| s.id }
-    space_ids.each { |s| @messages << Message.find_each.select { |m| m.space_id == s } }
+    space_ids.each { |s| @messages << Message.where(space_id: s) }
     @messages.flatten!
     erb :messages
   end
