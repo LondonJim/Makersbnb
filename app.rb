@@ -151,7 +151,7 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/members_area/messages/new' do
-    Message.create(
+    Message.new_message(
       user_id: session[:current_user].id,
       space_id: session[:space_id],
       dates: params[:dates],
