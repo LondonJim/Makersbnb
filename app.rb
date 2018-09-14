@@ -89,9 +89,6 @@ class MakersBnB < Sinatra::Base
     redirect '/members_area'
   end
 
-  # if session[:current_user] != nil
-  #   @real_owner = true if @space.user_id == session[:current_user].id
-  # end
 
   get '/spaces/create' do
     erb :add_form
@@ -137,7 +134,7 @@ class MakersBnB < Sinatra::Base
     else
       @logged_in = true
     end
-    
+
     @available_dates = @space.availabilities.map { |a| a.date }
     erb :space
   end
@@ -148,7 +145,21 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/members_area/messages' do
+    spaces = Space.find_each.select { |s| s.user_id == session[:current_user].id }
+    @messages = []
+    space_ids = spaces.map { |s| s.id }
+    space_ids.each { |s| @messages << Message.where(space_id: s) }
+    @messages.flatten!
     erb :messages
+  end
+
+  post '/confirm_message/:space_id' do
+    Booking.create(
+      user_id: params[:userId],
+      space_id: params[:spaceId],
+      date: params[:dates]
+    )
+    erb :confirm_message
   end
 
   post '/members_area/messages/new' do
