@@ -8,60 +8,70 @@
 <body>
   <img class="img-fluid" src="../header.png">
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a class="navbar-brand" href="/">Home</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav ml-auto">
-        <% if session[:current_user] == nil %>
-          <li>
-            <a class="nav-link" href="/login">Login</a>
-          </li>
-          <li>
-            <a class="nav-link" href="/signup">Signup</a>
-          </li>
-          <% else %>
-            <li>
-              <a class="nav-link">Hello,
-                <%= session[:current_user].handle %>
-              </a>
-            </li>
-            <li>
-              <a class="nav-link" href="/sign_out">Sign Out</a>
-            </li>
-            <li>
-              <a class="nav-link" href="/members_area">Members Area</a>
-            </li>
-            <li>
+    <a class="navbar-brand" href="/">Makers BnB</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+
+          <% if session[:current_user] != nil %>
+            <span class="navbar-text">
+              Hello, <%= session[:current_user].handle %>
+            </span>
+          <% end%>
+
+          <ul class="navbar-nav ml-auto">
+            <% if session[:current_user] == nil %>
+              <li>
+                <a class="nav-link" href="/login">Login</a>
+              </li>
+              <li>
+                <a class="nav-link" href="/signup">Signup</a>
+              </li>
+            <% else %>
+              <li>
+                <a class="nav-link" href="/sign_out">Sign Out</a>
+              </li>
+              <li>
+                <a class="nav-link" href="/members_area">Members Area</a>
+              </li>
+              <li>
               <a class="nav-link" href="/members_area/messages">Messages</a>
-            </li>
+              </li>
             <% end %>
-      </ul>
+          </ul>
+        </div>
+      </nav>
     </div>
   </nav>
   <br>
-  <% @messages.each do |m| %>
-    <h5>
-      <%= m.space_id %>
-    </h5>
-    <h5>
-      <%= m.user_id %>
-    </h5>
-    <h5>
-      <%= m.dates %>
-    </h5>
-    <form action="/confirm_message/<%= m.space_id %>" method="post">
-      <input type="hidden" id="spaceId" name="spaceId" value="<%= m.space_id %>">
-      <input type="hidden" id="userId" name="userId" value="<%= m.user_id %>">
-      <input type="hidden" id="dates" name="dates" value="<%= m.dates %>">
-      <input type="submit" id="messageCorrespondance" value="Reply">
-    </form>
-    <br>
-    <br>
-    <% end %>
-
-
-</body>
-
+    <div class="row">
+      <% @messages.each do |m| %>
+        <ul>
+          <div class="container rounded" style='background-color: LightGrey'>
+            <div class="col-sm pb-4">
+              <br>
+              <img src="../default_house.jpg" alt="Default House" style="width:200px;height:100px;">
+              <br>
+                Regarding Space: <%= m.space_id %>
+              <li>
+                Message From: <%= m.user_id %>
+              </li>
+              <li>
+                Date Requested: <%= m.dates %>
+              </li>
+              <center>
+                <form action="/confirm_message/<%= m.space_id %>" method="post">
+                  <input type="hidden" id="spaceId" name="spaceId" value="<%= m.space_id %>">
+                  <input type="hidden" id="userId" name="userId" value="<%= m.user_id %>">
+                  <input type="hidden" id="dates" name="dates" value="<%= m.dates %>">
+                  <input type="submit" id="messageCorrespondance" value="Reply">
+                </form>
+              </center>
+            </div>
+          </div>
+        </ul>
+      <% end %>
+    </div>
+  </body>
 </html>

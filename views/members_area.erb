@@ -9,57 +9,77 @@
 <body>
   <img class="img-fluid" src="header.png">
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a class="navbar-brand" href="/">Home</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav ml-auto">
-        <% if session[:current_user] == nil %>
-        <li>
-          <a class="nav-link" href="/login">Login</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/signup">Signup</a>
-        </li>
-        <% else %>
-        <li>
-          <a class="nav-link">Hello, <%= session[:current_user].handle %></a>
-        </li>
-        <li>
-          <a class="nav-link" href="/sign_out">Sign Out</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/members_area">Members Area</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/members_area/messages">Messages</a>
-        </li>
-        <% end %>
-      </ul>
+    <a class="navbar-brand" href="/">Makers BnB</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+
+          <% if session[:current_user] != nil %>
+            <span class="navbar-text">
+              Hello, <%= session[:current_user].handle %>
+            </span>
+          <% end%>
+
+          <ul class="navbar-nav ml-auto">
+            <% if session[:current_user] == nil %>
+              <li>
+                <a class="nav-link" href="/login">Login</a>
+              </li>
+              <li>
+                <a class="nav-link" href="/signup">Signup</a>
+              </li>
+            <% else %>
+              <li>
+                <a class="nav-link" href="/sign_out">Sign Out</a>
+              </li>
+              <li>
+                <a class="nav-link" href="/members_area">Members Area</a>
+              </li>
+              <li>
+              <a class="nav-link" href="/members_area/messages">Messages</a>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
     </div>
   </nav>
   <br>
   <center><%= flash[:notice] %></center>
 
-<a href="/spaces/create">Add New Space</a>
+  <center><a href="/spaces/create" >Add New Space</a></center>
+
+<div class="row">
   <% @space.each do |space| %>
     <ul>
-      <a href='/space/<%= space.id %>'>
-        <%= space.name %>
-      </a>
-      </li>
-      <li>Info:
-        <%= space.info %>
-      </li>
-      <li>Location:
-        <%= space.location %>
-      </li>
-      <li>Price:
-        <%= space.price %>
-      </li>
+      <div class="container rounded" style='background-color: LightGrey'>
+        <!-- <div class="row"> -->
+          <div class="col-sm pb-4">
+            <a href='/space/<%=space.id%>'>
+            <br>
+            <img src="default_house.jpg" alt="Default House" style="width:200px;height:100px;">
+            <br>
+              <%= space.name %>
+            </a>
+            </li>
+            <li>Info:
+              <%= space.info %>
+            </li>
+            <li>Location:
+              <%= space.location %>
+            </li>
+            <li>Price:
+              <%= space.price %>
+            </li>
+          </div>
+        <!-- </div> -->
+      </div>
     </ul>
     <% end %>
+
+</div>
+
 </body>
 
 </html>
