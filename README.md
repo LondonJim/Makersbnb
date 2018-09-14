@@ -2,14 +2,29 @@
 
 MakerBnB is a web application that allows users to both list their spaces for hire, and hire spaces from other users.
 
-Tags: Ruby, Rspec, Capybara, JavaScript, ActiveRecord, JQuery, PG, Sinatra 
+Tags: Ruby, Rspec, Capybara, JavaScript, ActiveRecord, JQuery, PG, Sinatra, Bcrypt
 
-### Domain Model
+### Dev Team
 
-![Imgur](https://i.imgur.com/WWyeSFv.png)
+
+[James Sutherland](https://github.com/LondonJim)
+
+[Harry James Pugh](https://github.com/hjpugh)
+
+[Kar-ho Lee](https://github.com/leekarho)
+
+[Samir Soormally](https://github.com/LazySamir)
+
+
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/hjpugh/Makersbnb.svg?columns=all)](https://waffle.io/hjpugh/Makersbnb)
 
 ### Database Model
 
+![Imgur](https://i.imgur.com/ACWUR2C.png)
+
+### Initial Domain Model
+
+![Imgur](https://i.imgur.com/WWyeSFv.png)
 
 ###  Setup Instructions
 ```
@@ -20,9 +35,10 @@ $ bundle
 #### Database
 
 We used a cloud database solution, in our case we used ElephantSQL.
-Once a account was made you need to insert the following in to an .env file, which will need to be added to the root directory. The url is supplied by the database you have set up.
 
-Example of .env file
+Once an account is made you will need to insert the following in to an .env file, which will need to be added to the root directory. The url is supplied by the database you have set up.
+
+Example .env file
 
 ```
 export URL_TEST="postgres://gThdgfjq:iGFhYUjWFc94ttnkuv7fD5GepIKZ9s1@dumbo.db.elephantsql.com:5432/gThdgfjq"
@@ -45,7 +61,6 @@ Sinatra
 		sinatra 2.0.3
 
 
-		
 ##User stories
 ```
 As a user,
@@ -86,7 +101,7 @@ I want to be able to approve or deny requests from others.
   - it is done when a user can approve or deny requests
 
 As a logged-in user,
-So that my spaces are not double booked, 
+So that my spaces are not double booked,
 I want space availability to be removed from the space once a request is accepted.
   - it is done when an accepted request removes the availability from listing
   - it is done when availability remains unless the request is accepted
@@ -99,3 +114,6 @@ I want to not be able to send a request to hire a space if it's not available. -
 So can keep up to date with MakersBnB
 I want to receive emails whenever something happens with my account -->
 ```
+
+
+
