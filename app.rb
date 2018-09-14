@@ -152,6 +152,11 @@ class MakersBnB < Sinatra::Base
     erb :messages
   end
 
+  get '/confirm_message/:space_id' do
+
+    erb :confirm_message
+  end
+
   post '/members_area/messages/new' do
     Message.new_message(
       user_id: session[:current_user].id,
