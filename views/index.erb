@@ -7,10 +7,7 @@
 </head>
 
 <body>
-  <div class="jumbotron text-center" style="margin-bottom:0">
-    <h1>Makers BnB</h1>
-    <p>Hire and rent spaces</p>
-  </div>
+  <img class="img-fluid" src="header.png">
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a class="navbar-brand" href="/">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -53,21 +50,28 @@
     <center><%= flash[:notice] %></center>
     <% @spaces.each do |space| %>
       <ul>
-        <div class="col-sm pb-4">
-        <a href='/space/<%=space.id%>'>
-          <%= space.name %>
-        </a>
-        </li>
-        <li>Info:
-          <%= space.info %>
-        </li>
-        <li>Location:
-          <%= space.location %>
-        </li>
-        <li>Price:
-          <%= space.price %>
-        </li>
-      </div>
+        <div class="container rounded" style='background-color: LightGrey'>
+          <!-- <div class="row"> -->
+            <div class="col-sm pb-4">
+              <a href='/space/<%=space.id%>'>
+              <br>
+              <img src="https://cdn.pixabay.com/photo/2016/11/18/17/46/architecture-1836070_1280.jpg" alt="Default House" style="width:200px;height:100px;">
+              <br>
+                <%= space.name %>
+              </a>
+              </li>
+              <li>Info:
+                <%= space.info %>
+              </li>
+              <li>Location:
+                <%= space.location %>
+              </li>
+              <li>Price:
+                <%= space.price %>
+              </li>
+            </div>
+          <!-- </div> -->
+        </div>
       </ul>
       <% end %>
 
