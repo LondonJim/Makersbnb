@@ -35,6 +35,7 @@ $ bundle
 #### Database
 
 We used a cloud database solution, in our case we used ElephantSQL.
+
 Once an account is made you will need to insert the following in to an .env file, which will need to be added to the root directory. The url is supplied by the database you have set up.
 
 Example .env file
@@ -113,3 +114,6 @@ I want to not be able to send a request to hire a space if it's not available. -
 So can keep up to date with MakersBnB
 I want to receive emails whenever something happens with my account -->
 ```
+
+
+

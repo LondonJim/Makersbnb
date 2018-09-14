@@ -4,7 +4,7 @@ feature 'List spaces' do
     add_first_user_and_confirm
     add_first_space_and_confirm
     add_second_space_and_confirm
-    click_link "Home"
+    click_link "Makers BnB"
 
     expect(page).to have_content "Samir's Super Shack"
     expect(page).to have_content "Price: 1000000"

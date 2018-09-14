@@ -7,7 +7,7 @@ feature 'Make a booking' do
     add_extra_availability_and_confirm
     click_link ('Sign Out')
     add_second_user_and_confirm
-    click_link ('Home')
+    click_link ('Makers BnB')
     click_link ("Samir's Super Shack")
     click_button('2018-12-10')
     click_button('submit')
