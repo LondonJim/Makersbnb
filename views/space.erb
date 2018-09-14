@@ -6,44 +6,43 @@
 
 <body style="text-align: center">
     <img class="img-fluid" src="../header.png">
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a class="navbar-brand" href="/">Home</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav ml-auto">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <a class="navbar-brand" href="/">Makers BnB</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
 
-        <% if session[:current_user] == nil %>
+            <% if session[:current_user] != nil %>
+              <span class="navbar-text">
+                Hello, <%= session[:current_user].handle %>
+              </span>
+            <% end%>
 
-
-        <li>
-          <a class="nav-link" href="/login">Login</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/signup">Signup</a>
-        </li>
-
-        <% else %>
-
-        <li>
-          <a class="nav-link">Hello, <%= session[:current_user].handle %></a>
-        </li>
-        <li>
-          <a class="nav-link" href="/sign_out">Sign Out</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/members_area">Members Area</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/members_area/messages">Messages</a>
-        </li>
-
-        <% end %>
-
-      </ul>
-    </div>
-  </nav>
+            <ul class="navbar-nav ml-auto">
+              <% if session[:current_user] == nil %>
+                <li>
+                  <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li>
+                  <a class="nav-link" href="/signup">Signup</a>
+                </li>
+              <% else %>
+                <li>
+                  <a class="nav-link" href="/sign_out">Sign Out</a>
+                </li>
+                <li>
+                  <a class="nav-link" href="/members_area">Members Area</a>
+                </li>
+                <li>
+                <a class="nav-link" href="/members_area/messages">Messages</a>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </nav>
   <h1>
     Available dates for
     <%= @space.name %>
