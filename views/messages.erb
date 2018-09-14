@@ -43,6 +43,12 @@
     </div>
   </nav>
   <br>
+  <% @messages.each do |m| %>
+    <h3> <%= m.space_id %> </h3>
+    <h3> <%= m.user_id %> </h3>
+    <h3> <%= m.dates %> </h3>
+    <br><br>
+    <% end %>
 </body>
 
 </html>
