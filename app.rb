@@ -140,5 +140,11 @@ class MakersBnB < Sinatra::Base
     erb :messages
   end
 
+  post '/members_area/messages/new' do
+    p params[:dates]
+    flash[:notice] = "Booking Message Sent"
+    redirect '/members_area'
+  end
+
   run! if app_file == $0
 end
