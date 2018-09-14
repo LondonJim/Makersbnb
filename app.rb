@@ -123,11 +123,21 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/space/:id' do
+
+    if session[:current_user] == nil
+      flash[:notice] = "Sign in to view dates"
+      redirect '/'
+    end
+
     session[:space_id] = params[:id]
     @space = Space.find_or_initialize_by(id: session[:space_id])
+
     if session[:current_user] != nil
       @real_owner = true if @space.user_id == session[:current_user].id
+    else
+      @logged_in = true
     end
+    
     @available_dates = @space.availabilities.map { |a| a.date }
     erb :space
   end
@@ -139,6 +149,17 @@ class MakersBnB < Sinatra::Base
 
   get '/members_area/messages' do
     erb :messages
+  end
+
+  post '/members_area/messages/new' do
+    Message.new_message(
+      user_id: session[:current_user].id,
+      space_id: session[:space_id],
+      dates: params[:dates],
+      status: false
+    )
+    flash[:notice] = "Booking Message Sent"
+    redirect '/members_area'
   end
 
   run! if app_file == $0
