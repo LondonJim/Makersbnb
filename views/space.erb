@@ -1,5 +1,7 @@
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script type="text/javascript" src="/scripts/messaging.js"></script>
 </head>
 
 <body style="text-align: center">
@@ -14,26 +16,28 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
         <% if session[:current_user] == nil %>
-        <li>
-          <a class="nav-link" href="/login">Login</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/signup">Signup</a>
-        </li>
-        <% else %>
-        <li>
-          <a class="nav-link">Hello, <%= session[:current_user].handle %></a>
-        </li>
-        <li>
-          <a class="nav-link" href="/sign_out">Sign Out</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/members_area">Members Area</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/members_area/messages">Messages</a>
-        </li>
-        <% end %>
+          <li>
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li>
+            <a class="nav-link" href="/signup">Signup</a>
+          </li>
+          <% else %>
+            <li>
+              <a class="nav-link">Hello,
+                <%= session[:current_user].handle %>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" href="/sign_out">Sign Out</a>
+            </li>
+            <li>
+              <a class="nav-link" href="/members_area">Members Area</a>
+            </li>
+            <li>
+              <a class="nav-link" href="/members_area/messages">Messages</a>
+            </li>
+            <% end %>
       </ul>
     </div>
   </nav>
@@ -42,20 +46,28 @@
     <%= @space.name %>
   </h1>
   <%= flash[:notice] %>
-  <br>
-  <% @available_dates.each do |a| %>
-    <%= a %>
+    <br>
+    <% @available_dates.each do |a| %>
+      <button class="availability" id="<%= a %>">
+        <%= a %>
+      </button>
       <br>
       <br>
-  <% end %>
-      <% if @real_owner %>
-      <!--  if session[:current_user] is same as user id owner of space -->
-      Add Date to Space
-      <form action="/spaces/update" method="post">
-        <input type="date" name="date" required>
-        <br>
-        <br>
-        <input type="submit" value="Add New Date">
-      </form>
       <% end %>
+        <% if @real_owner %>
+          <!--  if session[:current_user] is same as user id owner of space -->
+          Add Date to Space
+          <form action="/spaces/update" method="post">
+            <input type="date" name="date" required>
+            <br>
+            <br>
+            <input type="submit" value="Add New Date">
+          </form>
+          <% elsif !@real_owner %>
+            <form action="/members_area/messages/new" method="post">
+              <input type="hidden" id="selectedDates" name="dates" value="">
+              <input type="hidden" id="spaceId" name="spaceId" value="">
+              <input type="submit" id="submit" name="Submit">
+            </form>
+            <% end %>
 </body>
