@@ -159,6 +159,8 @@ class MakersBnB < Sinatra::Base
       space_id: params[:spaceId],
       date: params[:dates]
     )
+    availability = Availability.find_by(date: params[:dates], space_id: params[:space_id]).id
+    Availability.delete(availability)
     erb :confirm_message
   end
 

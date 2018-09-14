@@ -5,7 +5,7 @@
 </head>
 
 <body style="text-align: center">
-    <img class="img-fluid" src="../header.png">
+  <img class="img-fluid" src="../header.png">
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a class="navbar-brand" href="/">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -17,29 +17,31 @@
         <% if session[:current_user] == nil %>
 
 
-        <li>
-          <a class="nav-link" href="/login">Login</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/signup">Signup</a>
-        </li>
+          <li>
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li>
+            <a class="nav-link" href="/signup">Signup</a>
+          </li>
 
-        <% else %>
+          <% else %>
 
-        <li>
-          <a class="nav-link">Hello, <%= session[:current_user].handle %></a>
-        </li>
-        <li>
-          <a class="nav-link" href="/sign_out">Sign Out</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/members_area">Members Area</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/members_area/messages">Messages</a>
-        </li>
+            <li>
+              <a class="nav-link">Hello,
+                <%= session[:current_user].handle %>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" href="/sign_out">Sign Out</a>
+            </li>
+            <li>
+              <a class="nav-link" href="/members_area">Members Area</a>
+            </li>
+            <li>
+              <a class="nav-link" href="/members_area/messages">Messages</a>
+            </li>
 
-        <% end %>
+            <% end %>
 
       </ul>
     </div>
