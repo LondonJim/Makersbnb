@@ -29,6 +29,7 @@ class MakersBnB < Sinatra::Base
 
   get '/' do
     @spaces = Space.all
+    # @available_spaces = Space.find_by if available
     erb :index
   end
 

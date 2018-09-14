@@ -17,7 +17,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav">
+
+      <ul class="navbar-nav ml-auto">
         <% if session[:current_user] == nil %>
         <li>
           <a class="nav-link" href="/login">Login</a>
@@ -40,27 +41,43 @@
         </li>
         <% end %>
       </ul>
+
     </div>
   </nav>
   <br>
-  <center><%= flash[:notice] %></center>
-  <% @spaces.each do |space| %>
-    <ul>
-      <a href='/space/<%=space.id%>'>
-        <%= space.name %>
-      </a>
-      </li>
-      <li>Info:
-        <%= space.info %>
-      </li>
-      <li>Location:
-        <%= space.location %>
-      </li>
-      <li>Price:
-        <%= space.price %>
-      </li>
-    </ul>
-    <% end %>
+
+
+
+  <div class="row">
+
+    <center><%= flash[:notice] %></center>
+    <% @spaces.each do |space| %>
+      <ul>
+        <div class="col-sm pb-4">
+        <a href='/space/<%=space.id%>'>
+          <%= space.name %>
+        </a>
+        </li>
+        <li>Info:
+          <%= space.info %>
+        </li>
+        <li>Location:
+          <%= space.location %>
+        </li>
+        <li>Price:
+          <%= space.price %>
+        </li>
+      </div>
+      </ul>
+      <% end %>
+
+  </div>
+
+  </div>
+
+
+</div>
+
 </body>
 
 </html>
