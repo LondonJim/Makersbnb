@@ -44,10 +44,8 @@
   <br>
 
 
-
+  <center><%= flash[:notice] %></center>
   <div class="row">
-
-    <center><%= flash[:notice] %></center>
     <% @spaces.each do |space| %>
       <ul>
         <div class="container rounded" style='background-color: LightGrey'>
