@@ -151,7 +151,12 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/members_area/messages/new' do
-    p params[:dates]
+    Message.create(
+      user_id: session[:current_user].id,
+      space_id: session[:space_id],
+      dates: params[:dates],
+      status: false
+    )
     flash[:notice] = "Booking Message Sent"
     redirect '/members_area'
   end
