@@ -7,6 +7,8 @@ $(document).ready(function() {
         ? console.log("dates already added")
         : dates.push(this.id);
       document.getElementById("selectedDates").value = dates;
+      document.getElementById("availabilityId").value = this.id;
+      console.log($("#availabilityId"));
       console.log(dates);
     });
   });

@@ -12,14 +12,12 @@
           <span class="navbar-toggler-icon"></span>
         </button>
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
-
             <% if session[:current_user] != nil %>
               <span class="navbar-text">
                 Hello, <%= session[:current_user].handle %>
               </span>
             <% end%>
-
-            <ul class="navbar-nav ml-auto">
+              <ul class="navbar-nav ml-auto">
               <% if session[:current_user] == nil %>
                 <li>
                   <a class="nav-link" href="/login">Login</a>
