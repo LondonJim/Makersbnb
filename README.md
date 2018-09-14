@@ -10,20 +10,44 @@ Tags: Ruby, Selenium, Rspec, Capybara, Javascript, Jasmine, ActiveRecord, Sqlite
 
 ### Database Model
 
+![Imgur](https://i.imgur.com/ACWUR2C.png)
 
 ###  Setup Instructions
 ```
 $ git clone git@github.com:hjpugh/Makersbnb.git
-$ gem install bundler
-$ bundler
-$ create:db makersbnb_test
-$ create:db makersbnb_development
+$ bundle
 ```
 
-<!-- Figure out how we're showing the databases -->
+#### Database
 
-##### User stories
+We used a cloud database solution, in our case we used ElephantSQL.
+Once a account was made you need to insert the following in to an .env file, which will need to be added to the root directory. The url is supplied by the database you have set up.
 
+Example of .env file
+
+```
+export URL_TEST="postgres://gThdgfjq:iGFhYUjWFc94ttnkuv7fD5GepIKZ9s1@dumbo.db.elephantsql.com:5432/gThdgfjq"
+
+export URL="postgres://qhdgpsjh:1gshduHgCeGkHi923uhW57gha_KA1fCT@dumbo.db.elephantsql.com:5432/qhdgpsjh"
+
+```
+
+### Technologies Used
+Ruby
+
+		ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-darwin17]
+
+RSpec
+
+		RSpec 3.8
+
+Sinatra
+
+		sinatra 2.0.3
+
+
+##User stories
+```
 As a user,
 So I can list or hire a space,
 I want to be able to sign up for a MakersBnB account
@@ -62,7 +86,7 @@ I want to be able to approve or deny requests from others.
   - it is done when a user can approve or deny requests
 
 As a logged-in user,
-So that my spaces are not double booked, 
+So that my spaces are not double booked,
 I want space availability to be removed from the space once a request is accepted.
   - it is done when an accepted request removes the availability from listing
   - it is done when availability remains unless the request is accepted
@@ -74,3 +98,4 @@ I want to not be able to send a request to hire a space if it's not available. -
 <!-- As a user,
 So can keep up to date with MakersBnB
 I want to receive emails whenever something happens with my account -->
+```
