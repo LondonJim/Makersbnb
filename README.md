@@ -4,6 +4,10 @@ MakerBnB is a web application that allows users to both list their spaces for hi
 
 Tags: Ruby, Selenium, Rspec, Capybara, Javascript, Jasmine, ActiveRecord, Sqlite3
 
+### Dev Team
+
+
+
 ### Domain Model
 
 ![Imgur](https://i.imgur.com/WWyeSFv.png)
@@ -21,9 +25,9 @@ $ bundle
 #### Database
 
 We used a cloud database solution, in our case we used ElephantSQL.
-Once a account was made you need to insert the following in to an .env file, which will need to be added to the root directory. The url is supplied by the database you have set up.
+Once an account is made you will need to insert the following in to an .env file, which will need to be added to the root directory. The url is supplied by the database you have set up.
 
-Example of .env file
+Example .env file
 
 ```
 export URL_TEST="postgres://gThdgfjq:iGFhYUjWFc94ttnkuv7fD5GepIKZ9s1@dumbo.db.elephantsql.com:5432/gThdgfjq"
