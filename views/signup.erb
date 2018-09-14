@@ -14,19 +14,33 @@
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
+        <% if session[:current_user] == nil %>
         <li>
           <a class="nav-link" href="/login">Login</a>
         </li>
         <li>
           <a class="nav-link" href="/signup">Signup</a>
         </li>
+        <% else %>
+        <li>
+          <a class="nav-link">Hello, <%= session[:current_user].handle %></a>
+        </li>
+        <li>
+          <a class="nav-link" href="/sign_out">Sign Out</a>
+        </li>
         <li>
           <a class="nav-link" href="/members_area">Members Area</a>
         </li>
+        <li>
+          <a class="nav-link" href="/members_area/messages">Messages</a>
+        </li>
+        <% end %>
       </ul>
     </div>
   </nav>
-
+  <center>
+    <%= flash[:notice] %>
+  </center>
   <form action="/signup" method="post">
     <input type="text" name="name" required> Name
     <br>
@@ -42,9 +56,6 @@
     <input type="submit" value="Submit">
   </form>
 
-  <center>
-    <%= flash[:success] %>
-    <%= flash[:error] %>
-  </center>
+
 
 </body>

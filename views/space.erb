@@ -13,15 +13,27 @@
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
+        <% if session[:current_user] == nil %>
         <li>
           <a class="nav-link" href="/login">Login</a>
         </li>
         <li>
           <a class="nav-link" href="/signup">Signup</a>
         </li>
+        <% else %>
+        <li>
+          <a class="nav-link">Hello, <%= session[:current_user].handle %></a>
+        </li>
+        <li>
+          <a class="nav-link" href="/sign_out">Sign Out</a>
+        </li>
         <li>
           <a class="nav-link" href="/members_area">Members Area</a>
         </li>
+        <li>
+          <a class="nav-link" href="/members_area/messages">Messages</a>
+        </li>
+        <% end %>
       </ul>
     </div>
   </nav>
@@ -29,21 +41,21 @@
     Available dates for
     <%= @space.name %>
   </h1>
+  <%= flash[:notice] %>
   <br>
-  <br>
-
   <% @available_dates.each do |a| %>
     <%= a %>
       <br>
       <br>
+  <% end %>
+      <% if @real_owner %>
+      <!--  if session[:current_user] is same as user id owner of space -->
+      Add Date to Space
+      <form action="/spaces/update" method="post">
+        <input type="date" name="date" required>
+        <br>
+        <br>
+        <input type="submit" value="Add New Date">
+      </form>
       <% end %>
-
-        <br>
-        <br>
-        <form action="/spaces" method="get">
-          <input type="submit" value="Back">
-        </form>
-        <form action="/" method="get">
-          <input type="submit" value="Home">
-        </form>
 </body>

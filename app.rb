@@ -37,17 +37,34 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/signup' do
-    flash[:error] = "Passwords do not match" if params[:password] != params[:password_confirmation]
-    session[:current_user] = User.sign_up(
-      name: params[:name],
-      handle: params[:handle],
-      email: params[:email],
-      password: params[:password],
-      password_confirmation: params[:password_confirmation]
-    )
-    flash[:success] = "Signup successful, you are now logged in as #{session[:current_user].name}" if session[:current_user] != nil
-    flash[:error] = session[:current_user].errors.full_messages.to_sentence unless session[:current_user] == nil
-    redirect '/signup'
+    if params[:password] != params[:password_confirmation]
+      flash[:notice] = "Passwords do not match"
+      redirect '/signup'
+    elsif User.find_by(handle: params[:handle]) != nil
+      flash[:notice] = "Username has already been taken"
+      redirect '/signup'
+    elsif User.find_by(email: params[:email]) != nil
+      flash[:notice] = "Email has already been taken"
+      redirect '/signup'
+    else
+      session[:current_user] = User.sign_up(
+        name: params[:name],
+        handle: params[:handle],
+        email: params[:email],
+        password: params[:password],
+        password_confirmation: params[:password_confirmation]
+      )
+    end
+
+    flash[:notice] = session[:current_user].errors.full_messages.to_sentence if session[:current_user] != nil
+    flash[:notice] = "Signup successful, you are now logged in as #{session[:current_user].name}" if session[:current_user] != nil
+    redirect '/members_area' if session[:current_user] != nil
+  end
+
+  get '/sign_out' do
+    session[:current_user] = nil
+    flash[:notice] = "You have signed out, see you again soon!"
+    redirect '/'
   end
 
   get '/login' do
@@ -55,59 +72,67 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/login' do
-    flash[:error] = "Already logged in as #{session[:user].handle}" if session[:user] != nil
-    redirect '/login' if session[:user] != nil
-    session[:current_user] = User.find_by(handle: params[:handle]) if User.login(handle: params[:handle], password: params[:password])
-    flash[:error] = 'No details held' if session[:current_user] == nil
-    redirect '/login'
+    flash[:notice] = "Already logged in as #{session[:current_user].handle}" if session[:current_user] != nil
+    redirect '/login' if session[:current_user] != nil
+
+    if User.find_by(handle: params[:handle]) != nil
+      session[:current_user] = User.find_by(handle: params[:handle]) if User.login(handle: params[:handle], password: params[:password])
+    end
+
+    if session[:current_user] == nil
+      flash[:notice] = 'No details held'
+      redirect '/login'
+    end
+
+    flash[:notice] = "Welcome, #{session[:current_user].handle}"
+    redirect '/members_area'
   end
 
-  get '/add_form' do
+  # if session[:current_user] != nil
+  #   @real_owner = true if @space.user_id == session[:current_user].id
+  # end
+
+  get '/spaces/create' do
     erb :add_form
   end
 
   post '/spaces/create' do
     Space.create(
-      user_id: params[:user_id],
+      user_id: session[:current_user].id,
       name: params[:name],
       info: params[:info],
       location: params[:location],
       price: params[:price]
       )
-
-    space = Space.find_by(name: params[:name])
-
-    Availability.create(
-      space_id: space.id,
-      date: params[:date]
-      )
-
       flash[:notice] = "Space successfully added"
-
-    redirect '/'
+    redirect '/members_area'
   end
 
   post '/spaces/update' do
-    space = Space.find_by(name: params[:name_2])
+    space = Space.find_by(id: session[:space_id])
     space_user_id = space.user_id
-    if params[:user_id_2] == space_user_id.to_s
+    if session[:current_user].id == space_user_id
       Availability.create(
         space_id: space.id,
-        date: params[:date_2]
+        date: params[:date]
         )
         flash[:notice] = "Date successfully added to Space"
     end
-    redirect '/'
+    redirect "/space/#{space.id}"
   end
 
   get '/space/:id' do
-    @id = params[:id]
-    @space = Space.find_or_initialize_by(id: @id)
+    session[:space_id] = params[:id]
+    @space = Space.find_or_initialize_by(id: session[:space_id])
+    if session[:current_user] != nil
+      @real_owner = true if @space.user_id == session[:current_user].id
+    end
     @available_dates = @space.availabilities.map { |a| a.date }
     erb :space
   end
 
   get '/members_area' do
+    @space = Space.where(user_id: session[:current_user].id)
     erb :members_area
   end
 
