@@ -29,6 +29,16 @@ def add_first_user_and_confirm
   click_button "Submit"
 end
 
+def add_second_user_and_confirm
+  click_link "Signup"
+  fill_in :name, with: "Harry"
+  fill_in :handle, with: "KrayKray"
+  fill_in :email, with: "Harry@email.com"
+  fill_in :password, with: "KrayKray"
+  fill_in :password_confirmation, with: "KrayKray"
+  click_button "Submit"
+end
+
 def add_extra_availability_and_confirm
   click_link 'Members Area'
   click_link "Samir's Super Shack"
