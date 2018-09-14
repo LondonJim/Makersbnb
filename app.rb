@@ -122,11 +122,21 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/space/:id' do
+
+    if session[:current_user] == nil
+      flash[:notice] = "Sign in to view dates"
+      redirect '/'
+    end
+
     session[:space_id] = params[:id]
     @space = Space.find_or_initialize_by(id: session[:space_id])
+
     if session[:current_user] != nil
       @real_owner = true if @space.user_id == session[:current_user].id
+    else
+      @logged_in = true
     end
+    
     @available_dates = @space.availabilities.map { |a| a.date }
     erb :space
   end

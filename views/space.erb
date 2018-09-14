@@ -63,9 +63,10 @@
             <br>
             <input type="submit" value="Add New Date">
           </form>
-          <% end %>
+        <% elsif !@real_owner %>
           <form action="/members_area/messages/new" method="post">
-            <input type=hidden id="selectedDates" name="dates" value="">
+            <input type="hidden" id="selectedDates" name="dates" value="">
             <input type="submit">
           </form>
+        <% end %>
 </body>
