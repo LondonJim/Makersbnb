@@ -61,7 +61,8 @@ Sinatra
 		sinatra 2.0.3
 
 
-##User stories
+## User stories
+
 ```
 As a user,
 So I can list or hire a space,
@@ -88,8 +89,11 @@ I want to be able to list multiple spaces on one account
 As a logged-in user,
 So I can show when my spaces are available,
 I want to add dates of availability to my space listing
-<!-- Currently individual dates, hopefully soon add a range -->
+```
 
+Currently not implemented: 
+
+```
 As a logged-in user,
 So I can hire someone else's space,
 I want to be able to send a request to hire a space for one night
@@ -105,14 +109,14 @@ So that my spaces are not double booked,
 I want space availability to be removed from the space once a request is accepted.
   - it is done when an accepted request removes the availability from listing
   - it is done when availability remains unless the request is accepted
-<!--
+
 As a user,
 So I can don't try to book a space that isn't available,
-I want to not be able to send a request to hire a space if it's not available. -->
+I want to not be able to send a request to hire a space if it's not available.
 
-<!-- As a user,
+As a user,
 So can keep up to date with MakersBnB
-I want to receive emails whenever something happens with my account -->
+I want to receive emails whenever something happens with my account
 ```
 
 
